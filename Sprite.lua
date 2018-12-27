@@ -1,4 +1,12 @@
 
+-- 创建ImageView对象
+local imageView = ccui.ImageView:create("HelloWorld.png")
+imageView:setPosition(size.width / 2, size.height / 2)
+layer:addChild(imageView)
+
+
+
+
 local sprite = cc.Sprite:create("HelloWorld.png")
 
 -- 如果频率高，就在游戏初始化时加载
