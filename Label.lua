@@ -27,7 +27,7 @@
 	--设置缩放
 	textBMFont:setScale(0.8)
 
-	--创建RichText对象
+	--创建RichText对象，可以显示文本，图片等超文本，还可以设置文本的字体、颜色和链接
 	local richText = ccui.RichText:create()
 	--设置是否忽略用户定义的内容大小
 	richText:ignoreContentAdaptWithSize(false)

@@ -1,3 +1,7 @@
+
+world2Local(point)--世界坐标转换为模型坐标
+local2World(point)--模型坐标转换为世界坐标
+
 local size = cc.Director:getInstance():getWinSize()
 cclog("tag = %s",tag)
 table.getn(tableName) = #tableName--得到一个table的大小。
