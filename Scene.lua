@@ -1,3 +1,10 @@
+local size = cc.Director:getInstance():getWinSize()
+
+local scene = require("MyActionScene")
+local nextScene  =scene.create()
+local ts = cc.TransitionJumpZoom:create(1, nextScen保e)--动画效果
+cc.Director:getInstance():pushScene(ts)--留本场景，切换到新场景
+cc.Director:getInstance():popScene()--返回之前场景
 
 local LoadingScene = class("LoadingScene",function()
     return cc.Scene:create()

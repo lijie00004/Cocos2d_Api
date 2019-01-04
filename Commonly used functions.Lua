@@ -1,4 +1,7 @@
 
+toggleMenuItem:setPosition(cc.Director:getInstance():convertToGL(cc.p(930, 540)))--point屏幕坐标转成OpenGL坐标--OpenGL是以左下角为原点
+                                                    --convertToUI
+
 world2Local(point)--世界坐标转换为模型坐标
 local2World(point)--模型坐标转换为世界坐标
 
