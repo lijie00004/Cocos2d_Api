@@ -14,13 +14,28 @@
 	label:setTextVerticalAlignment(kCCVerticalTextAlignmentCenter)--设置文本垂直对齐方式--垂直文本对齐中心
 
 --cocos2d-x-3
+--创建Label
+	--创建系统字体标签对象
 	local label = cc.Label:createWithSystemFont("HelloWorld", "Arial", 36)
+	--创建TTF字体标签对象
+	local label = cc.Label:createWithTTF("HelloWorld", "fontFile", 36)
+	--也可
+	local ttfConfig  = {}
+    ttfConfig.fontFilePath="fonts/Marker Felt.ttf"
+    ttfConfig.fontSize = 32
+    ttfConfig.outlineSize = 4--描边距离
+    local label3 = cc.Label:createWithTTF(ttfConfig, "Hello World1")
+	--创建位图字体标签对象
+	local label2 = cc.Label:createWithBMFont("fonts/BMFont.fnt", "Hello World")
 	--创建Text对象
 	local label = ccui.Text:create("Hello World", "fonts/Marker Felt.ttf", 24)
+	--创建LabelAtlas对象
+	local label = cc.LabelAtlas:create("HelloWorld", 
+						"fonts/tuffy_bold_italic-charmap.png", 48, 66, string.byte(" "))
+	--tuffy_bold_italic-charmap是文字图片，48字符高度，66字符宽度，string.byte(" ")开始字符
 	--设置文本颜色
 	label:setColor(cc.c3b(159, 168, 176))
-	label:setPosition(size.width/2, size.height - label:getContentSize().height)
-	layer:addChild(label)
+	label4:enableShadow(cc.c4b(255,255,255,128), cc.size(4, -4))--阴影
 
 	--创建TextBMFont对象
 	local textBMFont = ccui.TextBMFont:create("Hello World", "fonts/BMFont.fnt")
@@ -47,8 +62,6 @@
 	richText:pushBackElement(re2)	
 	richText:pushBackElement(re3)
 	richText:pushBackElement(newLine)
-	
-
 
 	richText:removeElement(4)--可以传数字，也可以传名字
 	richText:removeElement(re3)
