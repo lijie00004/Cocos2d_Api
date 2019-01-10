@@ -28,16 +28,5 @@ local function onNodeEvent(tag)
 		layer:unsheduleUpdate()--停止游戏调度
 	end
 end
-layer:scheduleUpdateWithPriorityLua(function,0)--开始游戏调度，参数2是优先级
 layer:registerScriptHandler(onNodeEvent)--注册层事件监听器
-
---每一帧调度器
-local function update(dt)        
-    count = count + 1
-    if count > 100 then 
-        count = 0
-    end
-    loadingBar:setPercent(count)
-end
-layer:scheduleUpdateWithPriorityLua(update,0)
 
