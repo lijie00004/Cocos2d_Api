@@ -90,12 +90,12 @@
     local seq = cc.Sequence:create(ac1, acf, ac2)
     sprite:runAction(cc.Sequence:create(seq))
 
+
     local function CallBack3(pSender, table)--pSender是精灵本身，table是函数调用时传过来的
     	local sp = pSender
 	    cclog("CallBack3 %d", table[1])
 	    sp:runAction(cc.TintBy:create(table[1], table[2], table[3], table[4]))
 	end
-
 	function MyActionScene:OnCallFuncND()
 	    local ac1 = cc.MoveBy:create(2, cc.p(100, 100))
 	    local ac2 = ac1:reverse()
