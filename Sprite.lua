@@ -17,6 +17,8 @@ layer:addChild(imageView)
     local cache = cc.Director:getInstance():getTextureCache():addImage("HelloWorld.png")--创建纹理Texture2D对象
     --cc.Director:getInstance():getTextureCache()--获得TextureCache实例，
     local tree2 = cc.Sprite:create()
+    tree2:setSpriteFrame(enemyFramName)
+    --也可
     tree2:setTexture(cache)
     tree2:setTextureRect(cc.rect(73, 72,182,270))
 

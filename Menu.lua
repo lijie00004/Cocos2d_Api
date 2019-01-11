@@ -3,7 +3,7 @@
 	cc.MenuItemFont:setFontName("Times New Roman")--文本字体
     cc.MenuItemFont:setFontSize(86)--字体大小
     local item1 = cc.MenuItemFont:create("Start")--创建MenuItemFont文本菜单项
-    local function menuItem1Callback(sender)--点击事件
+    local function menuItem1Callback(tag, sender)--点击事件
         cclog("Touch Start Menu Item.")
     end
     item1:registerScriptTapHandler(menuItem1Callback)--注册点击事件
@@ -57,3 +57,11 @@
     soundToggleMenuItem:registerScriptTapHandler(menuSoundToggleCallback)
 
     local mn = cc.Menu:create(soundToggleMenuItem)
+
+    --设置选中状态
+    if  defaults:getBoolForKey(MUSIC_KEY, false) then
+        soundToggleMenuItem:setSelectedIndex(0)
+    else
+        soundToggleMenuItem:setSelectedIndex(1)
+    end
+  

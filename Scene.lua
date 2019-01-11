@@ -1,5 +1,6 @@
 --场景过渡动画
     local ts = cc.TransitionJumpZoom:create(1.0, settingScene)--第一个参数是动画持续时间，第二个是场景对象
+    cc.Director:getInstance():pushScene(ts)
                --TransitionFadeTR       网格过渡动画，从左下到右上
                --TransitionJumpZoom     跳动过渡动画
                --TransitionCrossFade    交叉渐变过渡动画
@@ -11,7 +12,7 @@
                --TransitionSplitRows    按行分割界面的过渡动画
                --TransitionTurnOffTiles 生产随机瓦片方格的过渡动画
 
-    cc.Director:getInstance():pushScene(ts)
+    
 --切换场景
     cc.Director:getInstance():runWithScene(gameScene)--只能启动第一个场景时调用
     cc.Director:getInstance():replaceScene(gameScene)--切换到下个场景
@@ -39,75 +40,142 @@
         nextScene:onEnter()
         nextScene:enterTransitionFinish()
 
+--场景原版
+    local scene = require("MyActionScene")
 
-local size = cc.Director:getInstance():getWinSize()
+    local size = cc.Director:getInstance():getWinSize()
 
-local scene = require("MyActionScene")
-local nextScene  =scene.create()
-local ts = cc.TransitionJumpZoom:create(1, nextScen保e)--动画效果
-cc.Director:getInstance():pushScene(ts)--留本场景，切换到新场景
-cc.Director:getInstance():popScene()--返回之前场景
+    local LoadingScene = class("LoadingScene",function()
+        return cc.Scene:create()
+    end)
 
-local LoadingScene = class("LoadingScene",function()
-    return cc.Scene:create()
-end)
-
-function LoadingScene.create()
-    local scene = LoadingScene.new()
-    scene:addChild(scene:createLayer())
-    return scene
-end
-
---不常用资源在onEnter()中创建缓冲，在onExit()中清除
-function LoadingScene:ctor()--相当init
-    --场景生命周期事件处理
-    --cc.SpriteFrameCache:getInstance():addSpriteFrames("help/help.plist")--缓存资源（长周期），一直都在的可以在main中加载
-    local function onNodeEvent(event)
-        if event == "enter" then--进入场景时触发
-            self:onEnter()
-        elseif event == "enterTransitionFinish" then--场景进入并且过渡动画完成时候触发
-            self:onEnterTransitionFinish()
-        elseif event == "exit" then--退出场景时触发
-            self:onExit()
-        elseif event == "exitTransitionStart" then--场景退出过渡动画开始时候触发
-            self:onExitTransitionStart()
-        elseif event == "cleanup" then--场景销毁时候触发
-            self:cleanup()
-        end
+    function LoadingScene.create()
+        cclog("SceneName    LoadingScene")
+        local scene = LoadingScene.new()
+        scene:addChild(scene:createLayer())
+        return scene
     end
-    self:registerScriptHandler(onNodeEvent)
-end
 
--- 创建层
-function LoadingScene:createLayer()
-    cclog("LoadingScene init")
-    local layer = cc.Layer:create()
-    return layer
-end
+    --不常用资源在onEnter()中创建缓冲，在onExit()中清除
+    function LoadingScene:ctor()--相当init
+        --场景生命周期事件处理
+        --cc.SpriteFrameCache:getInstance():addSpriteFrames("help/help.plist")--缓存资源（长周期），一直都在的可以在main中加载
+        local function onNodeEvent(event)
+            if event == "enter" then--进入场景时触发
+                self:onEnter()
+            elseif event == "enterTransitionFinish" then--场景进入并且过渡动画完成时候触发
+                self:onEnterTransitionFinish()
+            elseif event == "exit" then--退出场景时触发
+                self:onExit()
+            elseif event == "exitTransitionStart" then--场景退出过渡动画开始时候触发
+                self:onExitTransitionStart()
+            elseif event == "cleanup" then--场景销毁时候触发
+                self:cleanup()
+            end
+        end
+        self:registerScriptHandler(onNodeEvent)
+    end
 
-function LoadingScene:onEnter()
-    cclog("LoadingScene onEnter")
-    --cc.SpriteFrameCache:getInstance():addSpriteFrames("help/help.plist")--缓存资源（短周期）
-end
+    -- 创建层
+    function LoadingScene:createLayer()
+        cclog("LoadingScene init")
+        local layer = cc.Layer:create()
+        return layer
+    end
 
-function LoadingScene:onEnterTransitionFinish()
-    cclog("LoadingScene onEnterTransitionFinish")
-end
+    function LoadingScene:onEnter()
+        cclog("LoadingScene onEnter")
+    end
 
-function LoadingScene:onExit()
-    cclog("LoadingScene onExit")
-    --cc.SprteFrameCache:getInstance():removeSpriteFramesFromFile("help/help.plist")（短周期）
-    --cc.SprteFrameCache:getInstance():removeSpriteFrameByName(name)--清除特定名字帧（短周期）
-    --cc.SprteFrameCache:getInstance():removeSpriteFrames()--清除所有缓存中的帧（短周期）
-    --cc.SprteFrameCache:getInstance():removeUnusedSpriteFrames()--清除所有缓存中未使用的帧（短周期）
-end
+    function LoadingScene:onEnterTransitionFinish()
+        cclog("LoadingScene onEnterTransitionFinish")
+    end
 
-function LoadingScene:onExitTransitionStart()
-    cclog("LoadingScene onExitTransitionStart")
-end
+    function LoadingScene:onExit()
+        cclog("LoadingScene onExit")
+    end
 
-function LoadingScene:cleanup()
-    cclog("LoadingScene cleanup")
-end
+    function LoadingScene:onExitTransitionStart()
+        cclog("LoadingScene onExitTransitionStart")
+    end
 
-return LoadingScene
+    function LoadingScene:cleanup()
+        cclog("LoadingScene cleanup")
+    end
+
+    return LoadingScene
+
+
+
+    
+
+--main()函数
+    
+    require "cocos.init"
+
+    --设计分辨率大小
+    local designResolutionSize = cc.size(320, 568)--设计大小
+    local smallResolutionSize = cc.size(640, 1136)
+    local largeResolutionSize = cc.size(750, 1334)
+
+    cclog = function(...)
+        print(string.format(...))
+    end
+
+    local function main()
+        collectgarbage("collect")
+        -- avoid memory leak
+        collectgarbage("setpause", 100)
+        collectgarbage("setstepmul", 5000)
+
+        --添加路径
+        local sharedFileUtils = cc.FileUtils:getInstance()
+        sharedFileUtils:addSearchPath("src")
+        sharedFileUtils:addSearchPath("res")
+        --获取所有路径
+        local searchPaths = sharedFileUtils:getSearchPaths()
+        --获取屏幕大小frameSize
+        local director = cc.Director:getInstance()
+        local glview = director:getOpenGLView()
+        local frameSize = glview:getFrameSize()
+
+        -- 如果屏幕分辨率高度大于small尺寸的资源分辨率高度，选择large资源。
+        if frameSize.height > smallResolutionSize.height then
+            director:setContentScaleFactor(math.min(largeResolutionSize.height / designResolutionSize.height, largeResolutionSize.width / designResolutionSize.width))
+            table.insert(searchPaths, 1, "res/large")
+        --如果屏幕分辨率高度小等于small尺寸的资源分辨率高度，选择small资源。
+        else
+            director:setContentScaleFactor(math.min(smallResolutionSize.height / designResolutionSize.height, smallResolutionSize.width / designResolutionSize.width))
+            table.insert(searchPaths, 1, "res/small")
+        end
+
+        --设置资源搜索路径
+        sharedFileUtils:setSearchPaths(searchPaths)
+
+        -- 设置设计分辨率策略
+        glview:setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, cc.ResolutionPolicy.FIXED_WIDTH)
+
+        --设置是否显示帧率和精灵个数
+        director:setDisplayStats(true)
+
+        --设置帧率
+        director:setAnimationInterval(1.0 / 60)
+        
+        --create scene 
+        local scene = require("LoadingScene")
+        local gameScene = scene.create()
+
+        if cc.Director:getInstance():getRunningScene() then
+            cc.Director:getInstance():replaceScene(gameScene)
+        else
+            cc.Director:getInstance():runWithScene(gameScene)
+        end
+
+    end
+
+
+    local status, msg = xpcall(main, __G__TRACKBACK__)
+    if not status then
+        error(msg)
+    end
+

@@ -108,10 +108,6 @@
 	local spriteFrame  = cc.SpriteFrameCache:getInstance()
     spriteFrame:addSpriteFrames("run.plist")
 
-    local bg = cc.Sprite:createWithSpriteFrameName("background.png")
-    bg:setPosition(cc.p(size.width/2, size.height/2))
-    layer:addChild(bg)
-
     local sprite = cc.Sprite:createWithSpriteFrameName("h1.png")
     sprite:setPosition(cc.p(size.width/2, size.height/2))
     layer:addChild(sprite)

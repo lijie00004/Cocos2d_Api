@@ -15,6 +15,7 @@ self.uiLayer:addWidget(self.layout)
 
 --cocos2d-x-3
 local layer = cc.Layer:create()
+local bg = cc.LayerColor:create(cc.c3b(255, 255, 255))
 
 图层触摸事件
 local function onTouch(eventType, x, y)
@@ -29,4 +30,5 @@ local function onNodeEvent(tag)
 	end
 end
 layer:registerScriptHandler(onNodeEvent)--注册层事件监听器
+										--sprite也可以注册层级事件监听器
 

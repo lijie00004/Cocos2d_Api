@@ -13,9 +13,7 @@ function GameScene.create()
     return scene
 end
 
-
 function GameScene:ctor()
-    --size = cc.Director:getInstance():getVisibleSize()
 end
 
 function GameScene:addNewSpriteAtPosition(pos)
@@ -31,6 +29,9 @@ end
 function GameScene:createLayer()--第一个例子
 
     local layer = cc.Layer:create()
+
+    -- local body = cc.PhysicsBody:create()--也可
+    -- body:addShape(cc.PhysicsShapeCircle:create(5))
 
     --定义世界的边界
     local body = cc.PhysicsBody:createEdgeBox(size, cc.PHYSICSBODY_MATERIAL_DEFAULT, 5.0)--矩形大小，材质，边的宽度
@@ -68,13 +69,16 @@ function GameScene:addNewSpriteAtPosition(pos)
     local body = cc.PhysicsBody:createCircle(sp:getContentSize().width / 2)
 
     body:setContactTestBitmask(0x1)--设置物体接触时能否触发接触事件
-    --    body:setCategoryBitmask(0x2)
-    --    body:setCollisionBitmask(0x2)
+    body:setCategoryBitmask(0x2)
+    body:setCollisionBitmask(0x2)
 
     sp:setPhysicsBody(body)
     sp:setPosition(pos)
     self:addChild(sp)
 end
+
+
+
 
 -- 创建层
 function GameScene:createLayer()--第二个例子
