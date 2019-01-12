@@ -65,6 +65,16 @@ local boxC = cc.Sprite:create("BoxC2.png")
 boxC:setPosition(cc.p(size.width / 2 + 120, size.height / 2 + 160))
 layer:addChild(boxC, 30, kBoxC_Tag)
 
+
+
+local function touchMoved(touch, event)
+    -- 获取事件所绑定的 node
+    local node = event:getCurrentTarget()
+    local currentPosX, currentPosY = node:getPosition()
+    local diff = touch:getDelta()
+    -- 移动当前按钮精灵的坐标位置
+    node:setPos(cc.p(currentPosX + diff.x, currentPosY + diff.y))
+end
 -- 创建一个事件监听器 OneByOne 为单点触摸
 local listener1 = cc.EventListenerTouchOneByOne:create()
 -- 设置是否吞没事件，在 onTouchBegan 方法返回 true 时吞没
@@ -83,3 +93,5 @@ local listener2 = listener1:clone()
 eventDispatcher:addEventListenerWithSceneGraphPriority(listener2, boxB)
 local listener3 = listener1:clone()
 eventDispatcher:addEventListenerWithSceneGraphPriority(listener3, boxC)
+
+eventDispatcher:removeEventListener(listener1)

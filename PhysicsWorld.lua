@@ -137,6 +137,9 @@ function GameScene:createLayer()--第二个例子
     listener:setSwallowTouches(true)
     -- onTouchBegan 事件回调函数
     listener:registerScriptHandler(touchBegan, cc.Handler.EVENT_TOUCH_BEGAN)
+    local eventDispatcher = self:getEventDispatcher()
+    -- 添加监听器
+    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, layer)
 
     local contactListener = cc.EventListenerPhysicsContact:create()
     contactListener:registerScriptHandler(onContactBegin, cc.Handler.EVENT_PHYSICS_CONTACT_BEGIN)
@@ -144,10 +147,9 @@ function GameScene:createLayer()--第二个例子
     contactListener:registerScriptHandler(onContactPostSolve, cc.Handler.EVENT_PHYSICS_CONTACT_POSTSOLVE)
     contactListener:registerScriptHandler(onContactSeparate, cc.Handler.EVENT_PHYSICS_CONTACT_SEPARATE)
 
-    local eventDispatcher = self:getEventDispatcher()
-    -- 添加监听器
-    eventDispatcher:addEventListenerWithSceneGraphPriority(listener, layer)
     eventDispatcher:addEventListenerWithSceneGraphPriority(contactListener, layer)
+
+   
 
     return layer
 end
