@@ -1,23 +1,22 @@
 
 --cocos命令指令
     cocos new HelloLua -p com.work6 -l lua -d D:/cocos
+
+
+    
 --node
-    local childNode = cc.Node:create()
     node:addchild(childNode,0,123)--0表示绘制顺序，123表示标签
-    local node = node:getChildByTag(123)
-    node:removeChildByTag(123,true)--true表示停止该子节点上一切动作
-    node:removeChild(childNode,true)
-
-    node:removeAllChildren()--在onExit()先听着各种监听，再删除节点
-    node:removeFromParent()
-    node = nil
-
-    node:removeAllChildrenWithCleanup(true)--删除所有节点，并停止该子节点上一切动作
-    node:removeFromParentAndCleanup(true)--从父节点删除node节点，并停止该节点上一切动作
+    node:getChildByTag(int)
+    node:getContentSize()--获取文本内容大小
+    node:getPosition()
     node:setAnchorPoint(cc.p(0.5,0.5))
     node:setPosition(cc.p(0.5,0.5))
-    node:getChildren()
-    local posX, posY = node2:getPosition()
+    node:setGlobalZOrder(float)
+    
+    node:removeAllChildrenWithCleanup(true)--清除所有子节点，并清理所有操作
+    node:removeChild(nodeName, true)----清除子节点，并清理所有操作
+    node:removeChildByTag(123,true)--true表示停止该子节点上一切动作
+    node:removeFromParentAndCleanup(true)--从父节点删除node节点，并停止该节点上一切动作
 
 
 

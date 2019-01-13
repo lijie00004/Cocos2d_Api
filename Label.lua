@@ -15,6 +15,24 @@
 
 --cocos2d-x-3
 --创建Label
+	label:setString("HelloLua\nHelloCocos")
+	label:getString()
+	label:getStringNumLines()--获取行数
+	label:getStringLength()--获取字符长度，换行符也算一个字符
+	label:setTextColor(ccc3(60,60,60))
+	label:enableBold()--开启粗体
+	label:enableUnderline()--开启下划线
+	label:enableStrikethrough()--开启删除线
+	label:disableEffect()--清楚文本所有效果
+	--设置水平方向对齐方式
+	label:setAlignment(cc.TEXT_ALIGNMENT_LEFT)
+	label:setAlignment(cc.TEXT_ALIGNMENT_CENTER)
+	label:setAlignment(cc.TEXT_ALIGNMENT_RIGHT)
+
+	label:setBMFontSize(10)
+	
+
+
 	--创建系统字体标签对象
 	local label = cc.Label:createWithSystemFont("HelloWorld", "Arial", 36)
 	--创建TTF字体标签对象
