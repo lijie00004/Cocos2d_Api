@@ -9,9 +9,30 @@
     node:getChildByTag(int)
     node:getContentSize()--获取文本内容大小
     node:getPosition()
+    node:getScene()
+    node:getName()--与Tag差不多
+    node:getChildByTag(tag)
+    node:getChildren()--返回一个数组
+    node:getChildrenCount()
+    node:removeChildByTag(tag,true)
+    node:removeChildByName(tag,true)
+    node:removeAllChildren()--自带clean
+    node:runAction(action)
+    node:resume()
+    node:pause()
+    node:removeFromParent(true)--true表示clean一切
     node:setAnchorPoint(cc.p(0.5,0.5))
     node:setPosition(cc.p(0.5,0.5))
     node:setGlobalZOrder(float)
+    node:setScale(float)
+    node:setSkewX(50)--设置倾斜
+    node:setRotation(50)
+    node:setVisible(flase)
+    node:setTag(123)
+    node:setName(string)
+    node:setParent(node)
+    node:stopAction(action)
+
     
     node:removeAllChildrenWithCleanup(true)--清除所有子节点，并清理所有操作
     node:removeChild(nodeName, true)----清除子节点，并清理所有操作
