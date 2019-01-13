@@ -7,6 +7,8 @@
 	sprite:runAction(cc.Show:create())
 	sprite:runAction(cc.ToggleVisibility:create())--将对象显示/隐藏切换
 
+    acReverse = ac:reverse()
+
 --间隔动作
 	sprite:runAction(cc.MoveTo:create(2,cc.p(-50, -50)))
     sprite:runAction(cc.MoveBy:create(2,cc.p(-50, -50)))
@@ -24,8 +26,8 @@
     sprite:runAction(cc.ScaleBy:create(2, 0.5))
     sprite:runAction(cc.RotateTo:create(2,180))
     sprite:runAction(cc.RotateBy:create(2,-180))
-    sprite:runAction(cc.Blink:create(3, 5))--闪烁
-    sprite:runAction(cc.TintTo:create(2, 255, 0, 0))--染色，后面三个参数是色值
+    sprite:runAction(cc.Blink:create(3, 5))--闪烁,第一个参数是时间，第二个参数是次数
+    sprite:runAction(cc.TintTo:create(2, 255, 0, 0))--第一个参数是持续时间，后面三个参数是色值
     sprite:runAction(cc.TintBy:create(0.5,0, 255, 255))
     sprite:runAction(cc.FadeTo:create(1, 80))--80表示不透明的占80%
 
@@ -35,34 +37,14 @@
     sprite:runAction(cc.FadeOut:create(5))--渐弱
 
 --组合动作
-	local ac1 = sprite:runAction(cc.MoveTo:create(2,cc.p(size.width - 100, size.height - 100)))
-	local ac2 = sprite:runAction(cc.RotateTo:create(2, 40))
+	ac1 = cc.MoveTo:create(2,cc.p(size.width - 100, size.height - 100))
+	ac2 = cc.RotateTo:create(2, 40)
+
 	sprite:runAction(cc.Spawn:create(ac1,ac2))--同时执行
-
-	local ac1 = sprite:runAction(cc.MoveTo:create(2,cc.p(size.width - 100, size.height - 100)))
-	local ac2 = sprite:runAction(cc.JumpBy:create(2,cc.p(10, 10), 20,5))
-	local ac3 = sprite:runAction(cc.JumpBy:create(2,cc.p(-10, -10),20,3))
-	local seq = cc.Sequence:create(ac1, ac2, ac3)--按顺序执行
+	seq = cc.Sequence:create(ac1, ac2)--按顺序执行
 	sprite:runAction(cc.Repeat:create(seq,3))--重复执行指定次数
-
-	local bezier = {
-        cc.p(0, size.height / 2),
-        cc.p(10, - size.height / 2),
-        cc.p(10,20)
-    }
-    local ac1 = sprite:runAction(cc.BezierBy:create(2,bezier))
-    local ac2 = sprite:runAction(cc.TintBy:create(0.5, 0, 255, 255))
-    local ac1Reverse = ac1:reverse()
-    local ac2Repeat = sprite:runAction(cc.Repeat:create(ac2, 4))
-    local ac3 = sprite:runAction(cc.Spawn:create(ac1,ac2Repeat))
-    local ac4 = sprite:runAction(cc.Spawn:create(ac1Reverse,ac2Repeat))
-    local seq = cc.Sequence:create(ac3, ac4)
     sprite:runAction(cc.RepeatForever:create(seq))--无限重复
 
-    local ac1 = sprite:runAction(cc.MoveBy:create(2,cc.p(40, 60)))
-    local ac2 = ac1:reverse()--反动作
-    local seq = cc.Sequence:create(ac1, ac2)
-    sprite:runAction(cc.Repeat:create(seq,2))
 
 --动作速度控制
 	local ac1 = cc.MoveBy:create(2, cc.p(200, 0))
@@ -81,27 +63,22 @@
     sprite:runAction(cc.Speed:create(ac, (math.random() * 5)))--随机设置变换速度
 
 --函数调用
-	local function CallBack1()
+	local function CallBack1()--默认传pSender，必须用pSender，否则动作不执行
+                                --函数动作会和下个动作一起执行
 	    sprite:runAction(cc.TintBy:create(0.5, 255, 0, 255))
 	end
-	local ac1 = cc.MoveBy:create(2, cc.p(100, 100))
-    local ac2 = ac1:reverse()
     local acf = cc.CallFunc:create(CallBack1)
-    local seq = cc.Sequence:create(ac1, acf, ac2)
-    sprite:runAction(cc.Sequence:create(seq))
 
 
     local function CallBack3(pSender, table)--pSender是精灵本身，table是函数调用时传过来的
     	local sp = pSender
-	    cclog("CallBack3 %d", table[1])
 	    sp:runAction(cc.TintBy:create(table[1], table[2], table[3], table[4]))
 	end
 	function MyActionScene:OnCallFuncND()
 	    local ac1 = cc.MoveBy:create(2, cc.p(100, 100))
 	    local ac2 = ac1:reverse()
 	    local acf = cc.CallFunc:create(CallBack3, { 1, 255, 0, 255 })
-	    local seq = cc.Sequence:create(ac1, acf, ac2)
-	    sprite:runAction(cc.Sequence:create(seq))
+	    sprite:runAction(cc.Sequence:create(ac1, acf, ac2))
 	end
 
 --帧动画
