@@ -12,16 +12,7 @@ layer:addChild(imageView)
                 --cc.Sprite:createWithTexture(texture)--指定纹理来创建
                 --cc.Sprite:createWithTexture(texture，rect,rotated=false)--指定纹理和裁剪的矩形区域来创建,第三个参数表示是否旋转，默认不旋转
 
-    --不知道为什么多此一举
-    local cache = cc.Director:getInstance():getTextureCache():addImage("HelloWorld.png")--创建纹理Texture2D对象
-    --cc.Director:getInstance():getTextureCache()--获得TextureCache实例，
-    local tree2 = cc.Sprite:create()
-    tree2:setSpriteFrame(enemyFramName)
-    --也可
-    tree2:setTexture(cache)
-    tree2:setTextureRect(cc.rect(73, 72,182,270))
-
---纹理图集(Texture Atlas)也称为精灵表(Sprite Sheet)：把许多小的精灵图片组合到一张大图中
+--纹理图集(Texture Atlas)把许多小的精灵图片组合到一张大图中
     --制作纹理图集工具网站：https://zwopple.com https://www.codeandweb.com
         local mountain1 = cc.Sprite:create("SpirteSheet.png",cc.rect(2,391, 934, 388))
         --裁剪范围参考.plist文件中的<string>[{0,16},{934,388}]</string>,第一个参数表示图片位置，第二个位置表示图片大小
@@ -34,18 +25,18 @@ layer:addChild(imageView)
 
 
 --精灵帧缓存(SpriteFrameCache)
-    cc.SpriteFrameCache:getInstance():addSpriteFrames("SpirteSheet.plist")
-    local mountain1 = cc.Sprite:createWithSpriteFrameName("mountain1.png")
 
-    --也可
+    cc.SpriteFrameCache:getInstance():addSpriteFrames("SpirteSheet.plist")--缓存文件
+    --方法一
+    local mountain1 = cc.Sprite:createWithSpriteFrameName("mountain1.png")
+    --方法二，主要用于精灵动画
     local heroSpriteFrame = cc.SpriteFrameCache:getInstance():getSpriteFrameByName("hero1.png")
     local hero1 = cc.Sprite:createWithSpriteFrame(heroSpriteFrame)
 
-    
     --移除精灵帧
     cc.SpriteFrameCache:getInstance():removeSpriteFrameByName(name)--指定精灵帧名移除
     cc.SpriteFrameCache:getInstance():removeSpriteFrames()--移除精灵缓存
-    cc.SpriteFrameCache:getInstance():removeSpriteFramesFromFile(plist)--指定坐标文件移除精灵帧
+    cc.SpriteFrameCache:getInstance():removeSpriteFramesFromFile(plist)--指定文件移除精灵帧
     cc.SpriteFrameCache:getInstance():removeUnusedSpriteFrames()--移除没有使用精灵帧
 
 
