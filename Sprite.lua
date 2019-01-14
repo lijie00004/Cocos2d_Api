@@ -11,8 +11,7 @@ layer:addChild(imageView)
                 --cc.Sprite:create(filename,cc.rect(x,y,width,height))--指定图片和裁剪的矩形区域来创建
                 --cc.Sprite:createWithTexture(texture)--指定纹理来创建
                 --cc.Sprite:createWithTexture(texture，rect,rotated=false)--指定纹理和裁剪的矩形区域来创建,第三个参数表示是否旋转，默认不旋转
-                --cc.Sprite:createWithSpriteFrame(pSpriteFrame)--通过一个精灵帧对象来创建
-                --cc.Sprite:createWithSpriteFrameName(spriteFrameName)--通过指定帧缓存中精灵帧名来创建
+
     --不知道为什么多此一举
     local cache = cc.Director:getInstance():getTextureCache():addImage("HelloWorld.png")--创建纹理Texture2D对象
     --cc.Director:getInstance():getTextureCache()--获得TextureCache实例，
@@ -32,17 +31,22 @@ layer:addChild(imageView)
         hero1:setTexture(cache)
         hero1:setTextureRect(cc.rect(2,1706,391,327))
 
+
+
 --精灵帧缓存(SpriteFrameCache)
     cc.SpriteFrameCache:getInstance():addSpriteFrames("SpirteSheet.plist")
     local mountain1 = cc.Sprite:createWithSpriteFrameName("mountain1.png")
+
     --也可
     local heroSpriteFrame = cc.SpriteFrameCache:getInstance():getSpriteFrameByName("hero1.png")
     local hero1 = cc.Sprite:createWithSpriteFrame(heroSpriteFrame)
+
+    
     --移除精灵帧
-        cc.SpriteFrameCache:getInstance():removeSpriteFrameByName(name)--指定精灵帧名移除
-        cc.SpriteFrameCache:getInstance():removeSpriteFrames()--移除精灵缓存
-        cc.SpriteFrameCache:getInstance():removeSpriteFramesFromFile(plist)--指定坐标文件移除精灵帧
-        cc.SpriteFrameCache:getInstance():removeUnusedSpriteFrames()--移除没有使用精灵帧
+    cc.SpriteFrameCache:getInstance():removeSpriteFrameByName(name)--指定精灵帧名移除
+    cc.SpriteFrameCache:getInstance():removeSpriteFrames()--移除精灵缓存
+    cc.SpriteFrameCache:getInstance():removeSpriteFramesFromFile(plist)--指定坐标文件移除精灵帧
+    cc.SpriteFrameCache:getInstance():removeUnusedSpriteFrames()--移除没有使用精灵帧
 
 
 -- 如果频率高，就在游戏初始化时加载
