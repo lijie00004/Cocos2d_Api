@@ -33,6 +33,8 @@
     node:setParent(node)
     node:stopAction(action)
 
+    local btn = tolua.cast(sender,"Button")
+
     
     node:removeAllChildrenWithCleanup(true)--清除所有子节点，并清理所有操作
     node:removeChild(nodeName, true)----清除子节点，并清理所有操作
@@ -75,15 +77,13 @@
     --当Node被移除出场景或者其他情况下，调定时器依旧在
     local function shootBullet(delta)
     end
-    --每0.2秒调用function函数
+    --每0.2秒调用shootBullet函数,false表示无限次
     schedulerId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(shootBullet, 0.2, false)
-    --callback: 回调函数，Scheduler会传递给回调函数一个参数dt，表示距离上次回调所经过的时间
-    --delay:每次调用回调函数的时间间隔
-    --pause: 是否停住，一般设为false就行，否则定时器停住不执行
     cc.Director:getInstance():getScheduler():unscheduleScriptEntry(schedulerId)
 
---坐标系
 
+
+--坐标系
 	cc.Director:getInstance():convertToGL(cc.p(930, 540))--UI原点在左上角--GL原点在左下角
                        --convertToUI
     --世界坐标表示以0,0,为原点，模型坐标是以节点为原点

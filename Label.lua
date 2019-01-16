@@ -53,7 +53,7 @@
 	--设置是否忽略用户定义的内容大小
 	richText:ignoreContentAdaptWithSize(false)
 	--设置内容大小
-	richText:setContentSize(cc.size(200, 200))
+	richText:setContentSize(cc.size(423,370))
 	
 	--设置文本颜色
 	ttfConfig  = {}

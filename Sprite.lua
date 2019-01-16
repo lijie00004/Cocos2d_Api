@@ -7,6 +7,14 @@ layer:addChild(imageView)
 
 
 --创建sprite
+    --九宫格
+    bg_3 = cc.Scale9Sprite:create("bg/bg_3.png")
+    bg_3:setScale9Enabled(true)--默认开启，所以不用谢
+    bg_3:setCapInsets(cc.rect(25,25,3,4))--自动识别大小，可以不用写
+    bg_3:setContentSize(cc.size(265,46))
+
+    sprite:setContentSize(cc.size(423,370))--这是用sprite创建的精灵，直接设置大小，不用ignoreContentAdaptWithSize
+
     local sprite = cc.Sprite:create("HelloWorld.png")
                 --cc.Sprite:create(filename,cc.rect(x,y,width,height))--指定图片和裁剪的矩形区域来创建
                 --cc.Sprite:createWithTexture(texture)--指定纹理来创建

@@ -1,4 +1,6 @@
 --cocos2d-x-3
+    local  menu = cc.Menu:create()
+    menu:addChild(item1)
 --文本菜单
     item1 = cc.MenuItemLabel:create(labelAtlas)--通过Atlas文本创建MenuItemLabel菜单项
     item2 = cc.MenuItemFont:create("Start")--创建文本菜单项
@@ -24,7 +26,7 @@
    
 
 --精灵与图片菜单
-    SpriteMenuItem = cc.MenuItemSprite:create(NormalSprite, SelectedSprite)
+    SpriteMenuItem = cc.MenuItemSprite:create(Sprite, Sprite)--注意是精灵不是图片
     ImageMenuItem = cc.MenuItemImage:create(
         "menu/setting-up.png",
         "menu/setting-down.png")
