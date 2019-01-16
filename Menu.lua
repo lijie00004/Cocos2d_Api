@@ -1,21 +1,29 @@
 --cocos2d-x-3
-    local  menu = cc.Menu:create()
-    menu:addChild(item1)
 --文本菜单
-    item1 = cc.MenuItemLabel:create(labelAtlas)--通过Atlas文本创建MenuItemLabel菜单项
-    item2 = cc.MenuItemFont:create("Start")--创建文本菜单项
-    cc.MenuItemFont:setFontName("Times New Roman")--设置文本菜单项的字体
-    cc.MenuItemFont:setFontSize(86)
+    --用节点创建
+        local function OnClickMenu(tag, menuItemSender)
+            cclog("tag = %d", tag)
+            actionFlag = menuItemSender:getTag()
+        end
+        local pItmLabel1 = cc.Label:createWithBMFont("fonts/fnt8.fnt", "Explosion")
+        local pItmMenu1 = cc.MenuItemLabel:create(pItmLabel1)
+        pItmMenu1:setTag(tag)
+        pItmMenu1:registerScriptTapHandler(OnClickMenu)
+
+    --用string创建
+        cc.MenuItemFont:setFontName("Times New Roman")
+        cc.MenuItemFont:setFontSize(86)
+        local item1 = cc.MenuItemFont:create("Start")
+        local function menuItem1Callback(sender)
+            cclog("Touch Start Menu Item.")
+        end
+        item1:registerScriptTapHandler(menuItem1Callback)
+        local mn = cc.Menu:create(item1)
+        layer:addChild(mn)
 
 
 --public function
-    mn = cc.Menu:create(item1, item2)
     mn = cc.Menu:create(Array)--Array是数组
-
-    function menuItem1Callback(tag, sender)--点击事件
-        cclog("Touch Start Menu Item.")
-    end
-    item:registerScriptTapHandler(menuItem1Callback)--注册点击事件
 
 	mn:alignItemsVertically()--垂直方向
 	mn:alignItemsHorizontally()--水平
@@ -24,9 +32,17 @@
 	mn:alignItemsInColumns(3, 3, 3, 3, 3)--三列五行
 
    
-
 --精灵与图片菜单
-    SpriteMenuItem = cc.MenuItemSprite:create(Sprite, Sprite)--注意是精灵不是图片
+    local sprite = cc.Sprite:create("blue_tiles.png")
+    SpriteMenuItem = cc.MenuItemSprite:create(sprite,sprite_1,sprite_2)--三个参数不能是同一个节点
+    SpriteMenuItem:setEnabled(false)--禁用，如果有disabledImage,会显示disabledImage
+    SpriteMenuItem:selected()--显示selectedImage
+    SpriteMenuItem:unselected()--显示unselectedImage
+    SpriteMenuItem:setPosition(cc.p(100,0))--可设，可不设
+    local menu = cc.Menu:create(SpriteMenuItem)--方法一
+    menu:addChild(SpriteMenuItem)--方法二
+    menu:setPosition(cc.p(0,0))
+
     ImageMenuItem = cc.MenuItemImage:create(
         "menu/setting-up.png",
         "menu/setting-down.png")

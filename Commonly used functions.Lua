@@ -1,5 +1,18 @@
+	
+	os.time()
+	os.date()
 
-	math.floor(9.9) = 9--取整数部分，不四舍五入
+	table[1] = nil
+	
+	math.floor(9.9) = 9--向下取整
+	math.ceil(9.9) = 10--向上取整
+	math.max(...)
+	math.min(...)
+	math.randomseed(os.time())--配合下面三个使用
+	math.random()--0~1
+	math.random(3)--值：1,2,3
+	math.random(1,10)--值：1,2,3,4~10
+	
 
 	local hour = math.floor(self.goldRecruitInterval / 3600)
 	local minute = math.floor((self.goldRecruitInterval %3600) /60)
