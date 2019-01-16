@@ -4,7 +4,7 @@
         -- 获取事件所绑定的 node
         local node = event:getCurrentTarget()
         -- 获取当前点击点所在相对按钮的位置坐标
-        local locationInNode = node:convertToNodeSpace(touch:getLocation())
+        local locationInNode = node:convertToNodeSpace(touch:getLocation())--获取点击位置
         local s = node:getContentSize()
         local rect = cc.rect(0, 0, s.width, s.height)
         -- 点击范围判断检测

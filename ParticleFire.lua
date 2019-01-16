@@ -1,8 +1,6 @@
 --内置粒子系统
 	--创建火焰粒子系统对象
 	local particleSystem = cc.ParticleFire:create()
-						--cc.ParticleFire:create()
-						--numbeiOfParticles是粒子初始化的个数
 							--ParticleExplosion	爆炸粒子效果，半径模式
 							--ParticleGalaxy	星系粒子效果，半径模式
 							--ParticleSprital	旋涡粒子效果，半径模式
@@ -42,7 +40,7 @@
 
 --自定义粒子系统方法一：代码创建
 	--指定初始粒子数（200）
-	local particleSystem = cc.ParticleSystemQuad:createWithTotalParticles(200)
+	local particleSystem = cc.ParticleSystemQuad:createWithTotalParticles(200)--粒子初始化的个数
 
     --设置雪花粒子纹理图片
     particleSystem:setTexture(cc.Director:getInstance():getTextureCache():addImage("snow.png"))
@@ -95,7 +93,6 @@
     particleSystem:setEmissionRate(100)
 
     particleSystem:setPosition(cc.p(size.width/2, size.height + 50))
-
     layer:addChild(particleSystem)
 
 --自定义粒子系统方法二：plist文件创建
