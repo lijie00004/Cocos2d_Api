@@ -48,15 +48,8 @@
 
 
 	label = ccui.TextBMFont:create("Hello World", "fonts/BMFont.fnt")
-	label = ccui.Text:create("Hello World", "fonts/Marker Felt.ttf", 24)
-	
-	--创建RichText对象，可以显示文本，图片等超文本，还可以设置文本的字体、颜色和链接
-	richText = ccui.RichText:create()
-	--设置是否忽略用户定义的内容大小
-	richText:ignoreContentAdaptWithSize(false)
-	--设置内容大小
-	richText:setContentSize(cc.size(423,370))
-	
+	label = ccui.Text:create("Hello World", "fonts/Marker Felt.ttf", 24)--可以展示系统字体和TTF字体
+
 	--配置
 	ttfConfig  = {}
     ttfConfig.fontFilePath="fonts/Marker Felt.ttf"
@@ -64,22 +57,31 @@
     ttfConfig.outlineSize = 2--描边距离
     label = cc.Label:createWithTTF(ttfConfig, "Hello World1")
 
+
+
+    --创建RichText对象，可以显示文本，图片等超文本，还可以设置文本的字体、颜色和链接
+	richText = ccui.RichText:create()
+	--设置是否忽略用户定义的内容大小
+	richText:ignoreContentAdaptWithSize(false)
+	--设置内容大小
+	richText:setContentSize(cc.size(423,370))
+
 	--创建文本类型的RichElement对象
 	local re1 = ccui.RichElementText:create(1, cc.c3b(0, 255, 0), 255, "Hello World", "fonts/Marker Felt.ttf", 20)
 	local re2 = ccui.RichElementText:create(2, cc.c3b(255, 0, 0), 255, "Last one is red ", "Helvetica", 20)
 	--创建图片类型的RichElement对象
-	local re3 = ccui.RichElementImage:create(3, cc.c3b(255, 0, 0), 255, "CloseSelected.png")
+	local re3 = ccui.RichElementImage:create(3, cc.c3b(255, 0, 0), 255, "CloseSelected.png")--第一个参数是tag，第二个元素是色值，第三个元素是opacity
 	--创建换行RichElement对象
-	local newLine = ccui.RichElementNewLine:create(77, cc.c3b(255, 255, 255), 255)
+	local newLine = ccui.RichElementNewLine:create(77, cc.c3b(255, 255, 255), 255)--第一个参数是tag，第二个元素是色值，第三个元素是opacity
 
-	richText:pushBackElement(re1)
-	richText:pushBackElement(newLine)--换行作用
+	richText:pushBackElement(re1)--末尾添加元素
+	richText:pushBackElement(newLine)--相当于\n
 	richText:pushBackElement(re2)	
 	richText:pushBackElement(re3)
 	richText:pushBackElement(newLine)
 
-	richText:removeElement(4)--可以传数字，也可以传名字
-	richText:removeElement(re3)
+	richText:removeElement(4)--删除指定位置元素
+	richText:removeElement(re3)--删除指定名字元素
 
-	richText:insertElement(newLine, 3)
+	richText:insertElement(newLine, 3)--插入元素
 
