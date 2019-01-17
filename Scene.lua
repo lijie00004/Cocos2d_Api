@@ -1,3 +1,7 @@
+
+--D:\cocos2dx\HelloLua\frameworks\runtime-src\proj.android\app\AndroidManifest.xml
+    android:screenOrientation="portrait"--竖屏
+
 --场景过渡动画
     local ts = cc.TransitionJumpZoom:create(1.0, settingScene)--第一个参数是动画持续时间，第二个是场景对象
     cc.Director:getInstance():pushScene(ts)

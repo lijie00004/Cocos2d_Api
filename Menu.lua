@@ -38,7 +38,7 @@
     SpriteMenuItem:setEnabled(false)--禁用，如果有disabledImage,会显示disabledImage
     SpriteMenuItem:selected()--显示selectedImage
     SpriteMenuItem:unselected()--显示unselectedImage
-    SpriteMenuItem:setPosition(cc.p(100,0))--可设，可不设
+    SpriteMenuItem:setPosition(cc.p(100,0))--可设，可不设,设置位移太大，会导致无法响应事件
     local menu = cc.Menu:create(SpriteMenuItem)--方法一
     menu:addChild(SpriteMenuItem)--方法二
     menu:setPosition(cc.p(0,0))
