@@ -8,9 +8,9 @@
 		    cclog("Content:%s",v["Content"])
 		end
 	--加密
-		local jsonArray = {ID="1",CDate="2012-12-23",Content="发布iOSBook0"},
-		                    {ID="2",CDate="2012-12-24",Content="发布iOSBook1"}
-		cclog("jsonArray : %s",json.encode(jsonArray))
+		local jsonArray = {{ID="1",CDate="2012-12-23",Content="发布iOSBook0"},
+                            {ID="2",CDate="2012-12-24",Content="发布iOSBook1"}}
+   		cclog("jsonArray : %s",json.encode(jsonArray))
 --对象
 	--解码
 		local jsonStr = '{"ID":"1","CDate":"2012-12-23","Content":"发布iOSBook0"}'

@@ -7,12 +7,11 @@ console.log('Server on port 3000.');
 
 var wss = new WebSocketServer({port: 3000});--监听3000窗口
 
---wss.on是WebSocketServer与客户端WebSocket建立连接时触发的
 --wss是是WebSocketServer对象，ws是WebSocket对象
+--wss.on是服务端与客户端建立连接时触发的
 wss.on('connection', function(ws) {
-	ws.send('Hello Cocos2d-x Lua');--会触发下面message事件
-	//注册客户端消息
-	ws.on('message', function (data){
+	ws.send('Hello Cocos2d-x Lua');--触发客户端message事件，客户端是cc.WEBSOCKET_MESSAGE事件
+	ws.on('message', function (data){--注册接收客户端消息,如果客户端发消息，会在服务端显示。
         console.log(data);
     });
 });
