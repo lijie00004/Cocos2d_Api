@@ -4,6 +4,11 @@
 --长周期缓存：玩家花费时间长，可能跨场景。建议将差不多周期纹理图放在一个拼图里
 --长周期的开业在main()添加缓存
 
+size = cc.Director:getInstance():getWinSize()--获取的尺寸是手机屏幕实际大小
+glview:setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, cc.ResolutionPolicy.FIXED_WIDTH)
+size = cc.Director:getInstance():getWinSize()--size.width永远都是designResolutionSize.width，因为cc.ResolutionPolicy.FIXED_WIDTH
+                                            --size.height值是size.width/实际宽度*实际高度
+
 
 --D:\cocos2dx\HelloLua\frameworks\runtime-src\proj.android\app\AndroidManifest.xml
     android:screenOrientation="portrait"--竖屏

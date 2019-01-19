@@ -21,7 +21,7 @@ function playUpgradeAnimation(preAttr,fromAttrObj,attr)
                     print("dddddddddddddddvalue", value)
                     node:setScale(1.5)
                     node:setText(preAttr[i])
-                    node:enableStroke(ccc3(0,0,0), 0.8)
+                    node:enableStroke(cc.c3b(0,0,0), 0.8)
                 elseif preAttr[i] > maxValue and value < 0 then
                     if value > -10 then
                         preAttr[i] = math.ceil(preAttr[i] + (-1))
@@ -30,11 +30,11 @@ function playUpgradeAnimation(preAttr,fromAttrObj,attr)
                     end
                     node:setScale(1.5)
                     node:setText(preAttr[i])
-                    node:enableStroke(ccc3(0,0,0), 0.8)
+                    node:enableStroke(cc.c3b(0,0,0), 0.8)
                 else
                     local function moveFinish(node)
                         node:setText("")
-                        node:enableStroke(ccc3(0,0,0), 0.8)
+                        node:enableStroke(cc.c3b(0,0,0), 0.8)
                         dispatcher:setDispatchEvents(true)
                     end
                     local tempLabel = Label:create()
@@ -42,10 +42,10 @@ function playUpgradeAnimation(preAttr,fromAttrObj,attr)
                     tempLabel:setFontSize(15)
                     if value > 0 then
                         tempLabel:setText("+"..value)
-                        tempLabel:setColor(ccc3(0, 255, 0))
+                        tempLabel:setColor(cc.c3b(0, 255, 0))
                     else
                         tempLabel:setText(value)
-                        tempLabel:setColor(ccc3(255, 0, 0))
+                        tempLabel:setColor(cc.c3b(255, 0, 0))
                     end
                     local array3 = CCArray:create()
                     array3:addObject(CCMoveBy:create(0.5, ccp(0, 10)))
@@ -54,11 +54,11 @@ function playUpgradeAnimation(preAttr,fromAttrObj,attr)
                     tempLabel:setPosition(ccp(-70, 0))
                     tempLabel:runAction(CCSequence:create(array3))
                     node:addChild(tempLabel)
-                    tempLabel:enableStroke(ccc3(0,0,0), 0.8)
+                    tempLabel:enableStroke(cc.c3b(0,0,0), 0.8)
                     node:setText(bigNumSwith(maxValue))
                     node:stopAllActions()
                     node:setScale(1.0)
-                    node:enableStroke(ccc3(0,0,0), 0.8)
+                    node:enableStroke(cc.c3b(0,0,0), 0.8)
                 end
             end
             local array = CCArray:create()

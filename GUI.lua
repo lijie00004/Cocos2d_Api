@@ -84,3 +84,16 @@
     posX, posY = slider:getPosition()
     label2:setPosition(cc.p(posX, posY - 100))
     layer:addChild(label2)
+
+--输入框
+    local EditBox = ccui.EditBox:create(cc.size(180, 47),image)--第一个参数是大小，第二个参数图片，可以是九宫格，也可以是正常图片
+    EditBox:setMaxLength(6)--最大长度
+    EditBox:setText("")--设置内容
+    EditBox:getText()--获取内容
+    EditBox:setFontColor(color_1)--设置内容字体颜色
+    EditBox:setFont(font,font_24)--设置内容字体和大小
+    EditBox:setPlaceholderFont(font,font_24)----设置提示内容字体和大小
+    EditBox:setPlaceHolder("请输入账号")--设置提示内容
+    EditBox:setInputFlag(cc.EDITBOX_INPUT_FLAG_PASSWORD)--内容加密（*****）
+    EditBox:setInputMode(cc.EDITBOX_INPUT_MODE_NUMERIC)--输入内容只能是数字
+    eb_account:registerScriptEditBoxHandler(function)--点击输入框，每输入一个字符和退出都会调用回调函数

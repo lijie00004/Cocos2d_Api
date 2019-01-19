@@ -3,8 +3,8 @@
 	label:setFontName(LFont())
 	label:setText(bigNumSwith(CurPlayer.gonghui_gold))
 	label:setFontSize(18)
-	label:setColor(ccc3(248,251,15))
-	label:enableStroke(ccc3(131,67,17),0.5)
+	label:setColor(cc.c3b(248,251,15))
+	label:enableStroke(cc.c3b(131,67,17),0.5)
 
 	label:setTextAreaSize(CCSize(420,50))--自动换行
 	label:ignoreContentAdaptWithSize(false)
@@ -19,19 +19,19 @@
 	label:enableBold()--开启粗体
 	label:enableUnderline()--开启下划线
 	label:enableStrikethrough()--开启删除线
-	label:enableShadow(cc.c4b(255,255,255,128), cc.size(4, -4))--阴影,也可用ccc3(132,38,5), cc.size(2,-2)
+	label:enableShadow(cc.c4b(255,255,255,128), cc.size(4, -4))--阴影,也可用cc.c3b(132,38,5), cc.size(2,-2)
 	label:getString()
 	label:getStringNumLines()--获取行数
 	label:getStringLength()--获取字符长度，换行符也算一个字符
 	label:setString("HelloLua\nHelloCocos")
-	label:setTextColor(ccc3(60,60,60))
+	label:setTextColor(cc.c3b(60,60,60))
 	label:setBMFontSize(10)
 	label:setSystemFontName(font)
 	label:setSystemFontSize(float)
 	label:setDimensions(20,200)--类似遮罩大小
 	label:setContentSize(20,200)--没用
 	label:enableOutline(cc.c4b(0, 0, 0, 255),2)--用ttf字体可以显示描边，其它的只能在手机上显示，电脑上不显示
-		--enableOutline(ccc3(132,38,5),2)--也可
+		--enableOutline(cc.c3b(132,38,5),2)--也可
 
 	--设置水平方向对齐方式
 	label:setAlignment(cc.TEXT_ALIGNMENT_LEFT)
