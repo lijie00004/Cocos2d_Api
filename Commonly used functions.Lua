@@ -12,11 +12,14 @@
 	math.random()--0~1
 	math.random(3)--值：1,2,3
 	math.random(1,10)--值：1,2,3,4~10
+
+	print(a%b)--   0 =< 值 < b
 	
 
 	local hour = math.floor(self.goldRecruitInterval / 3600)
 	local minute = math.floor((self.goldRecruitInterval %3600) /60)
 	local second = math.floor(self.goldRecruitInterval % 60)
+	
 --字符串操作
 	string.len("string")--返回所给字符串的长度，如果字符串中包含'\0'，也会被统计为一个字符。
 	string.sub(string, n, m)--截取string字符串从n位置到m

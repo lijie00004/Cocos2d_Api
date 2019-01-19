@@ -1,4 +1,10 @@
 
+--短周期缓存：玩家使用的少，不跨场景，没必要长时间缓存。
+--可以在onEnter()中创建，在Exit()中清除
+--长周期缓存：玩家花费时间长，可能跨场景。建议将差不多周期纹理图放在一个拼图里
+--长周期的开业在main()添加缓存
+
+
 --D:\cocos2dx\HelloLua\frameworks\runtime-src\proj.android\app\AndroidManifest.xml
     android:screenOrientation="portrait"--竖屏
 

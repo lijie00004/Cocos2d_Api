@@ -50,7 +50,7 @@ layer:addChild(imageView)
 
 -- 如果频率高，就在游戏初始化时加载
 -- 如果频率第，就在进入场景时加载
--- 如果图片比较大，可以考虑异步加载
+-- 如果图片比较大，如背景图，可以考虑异步加载
 
 --异步加载图片
 function GameScene:createLayer()
@@ -90,7 +90,7 @@ function GameScene:createLayer()
     layer:addChild(_labelPercent)
 
     _numberOfLoadedSprites = 0--已加载图片数
-    _imageOffset = 0
+    _imageOffset = 0--控制sprite位置
 
     local sharedFileUtils = cc.FileUtils:getInstance()--获取FileUtils实例
     local fullPathForFilename = sharedFileUtils:fullPathForFilename("ImageMetaData.plist")--获取全路径
@@ -101,8 +101,8 @@ function GameScene:createLayer()
 
     for i=1, table.getn(vec) do
         local row = vec[i]
-        local filename = "icons/" .. row["filename"]
-        cc.Director:getInstance()
+        local filename = "icons/" .. row["filename"]--图片位置
+        cc.Director:getInstance()--TextureCache类异步加载函数
             :getTextureCache():addImageAsync(filename, loadingCallBack)--第一个参数是文件路径，第二个参数是回调函数
     end
     
