@@ -21,6 +21,7 @@
         cclog("touchMoved")
         local node = event:getCurrentTarget()
         local currentPosX, currentPosY = node:getPosition()
+        ----返回屏幕坐标中2个当前触摸位置的增量
         local diff = touch:getDelta()
         --移动当前按钮精灵的坐标位置
         node:setPosition(cc.p(currentPosX + diff.x, currentPosY + diff.y))
