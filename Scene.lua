@@ -1,13 +1,32 @@
+--获得当前平台
+local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+(cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform)--判断io设备
 
 --短周期缓存：玩家使用的少，不跨场景，没必要长时间缓存。
 --可以在onEnter()中创建，在Exit()中清除
 --长周期缓存：玩家花费时间长，可能跨场景。建议将差不多周期纹理图放在一个拼图里
 --长周期的开业在main()添加缓存
 
+
+--FrameSize是画框，WinSize是画布
 size = cc.Director:getInstance():getWinSize()--获取的尺寸是手机屏幕实际大小
 glview:setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, cc.ResolutionPolicy.FIXED_WIDTH)
 size = cc.Director:getInstance():getWinSize()--size.width永远都是designResolutionSize.width，因为cc.ResolutionPolicy.FIXED_WIDTH
                                             --size.height值是size.width/实际宽度*实际高度
+--获取屏幕大小frameSize
+local director = cc.Director:getInstance()
+local glview = director:getOpenGLView()
+local frameSize = glview:getFrameSize()
+
+-- 如果屏幕分辨率高度大于small尺寸的资源分辨率高度，选择large资源。
+    if frameSize.height > smallResolutionSize.height then
+        director:setContentScaleFactor(math.min(largeResolutionSize.height / designResolutionSize.height, largeResolutionSize.width / designResolutionSize.width))
+        table.insert(searchPaths, 1, resPrefix .. "large")
+        --如果屏幕分辨率高度小等于small尺寸的资源分辨率高度，选择small资源。
+    else
+        director:setContentScaleFactor(math.min(smallResolutionSize.height / designResolutionSize.height, smallResolutionSize.width / designResolutionSize.width))
+        table.insert(searchPaths, 1, resPrefix .. "small")
+    end
 
 
 --D:\cocos2dx\HelloLua\frameworks\runtime-src\proj.android\app\AndroidManifest.xml
