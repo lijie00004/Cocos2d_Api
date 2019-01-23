@@ -1,6 +1,11 @@
-
+--有些只能在touchMoved使用
+print(touch:getLocation().x,touch:getLocation().y)--返回点击位置，左下为原点
+print(touch:getDelta().x,touch:getDelta().y)--返回增量
+print(touch:getPreviousLocation().x,touch:getPreviousLocation().y)--返回上个触摸点
+print(touch:getStartLocation().x,touch:getStartLocation().y)--返回第一个触摸点
+print(touch:getLocationInView().x,touch:getLocationInView().y)--返回点击位置，左上为原点
 --单点触摸事件
-    local function touchBegan(touch, event)
+    local function touchBegan(touch, event)--必须返回true，如果返回false后面touchMoved、touchMoved无法回调
         -- 获取事件所绑定的 node
         local node = event:getCurrentTarget()
         -- 获取当前点击点所在相对按钮的位置坐标
@@ -27,7 +32,7 @@
         node:setPosition(cc.p(currentPosX + diff.x, currentPosY + diff.y))
     end
 
-    local function touchEnded(touch, event)
+    local function touchMoved(touch, event)
         cclog("touchEnded")
         local node = event:getCurrentTarget()
         local locationInNode = node:convertToNodeSpace(touch:getLocation())
@@ -54,7 +59,7 @@
     eventDispatcher:addEventListenerWithSceneGraphPriority(listener1, boxA)--node来决定Listenter的优先级，node越靠前越优先
     local listener2 = listener1:clone()
     --指定Listenter的优先级，越小越优先,不绑定节点
-    eventDispatcher:addEventListenerWithFixedPriority(listener2, 1)
+    eventDispatcher:addEventListenerWithFixedPriority(listener2, 1)--第二个参数必须输入
 
     eventDispatcher:removeEventListener(listener1)--注销指定事件监听器
     eventDispatcher:removeCustomEventListeners(customEventName)--注销自定义事件监听器

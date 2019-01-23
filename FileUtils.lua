@@ -22,6 +22,37 @@ sharedFileUtils:setSearchPaths(searchPaths)
 sharedFileUtils:addSearchPath("res/fonts")--必须在setSearchPaths后添加
 
 
+
+--PLIST
+    --根为字典结构的属性列表
+local sharedFileUtils = cc.FileUtils:getInstance()--获取实例
+local fullPathForFilename = sharedFileUtils:fullPathForFilename("NotesList.plist")
+local dict = sharedFileUtils:getValueMapFromFile(fullPathForFilename)
+for key,value in pairs(dict) do
+    for i = 1, table.getn(value) do--
+        cclog("--------%d--------",i)
+        local row = value[i]
+        local date = row["date"]
+        local content = row["content"]
+        cclog("date = %s", date)
+        cclog("content : %s", content)
+    end
+end
+    --根为列表结构的属性列表
+local sharedFileUtils = cc.FileUtils:getInstance()--获取实例
+local fullPathForFilename = sharedFileUtils:fullPathForFilename("NotesList.plist")
+local vector = sharedFileUtils:getValueVectorFromFile(fullPathForFilename)
+    for i = 1, table.getn(vector) do
+        cclog("--------%d--------",i)
+        local row = vector[i]
+        local date = row["date"]
+        local content = row["content"]
+        cclog("date = %s", date)
+        cclog("content : %s", content)
+    end
+end 
+
+
 --XML保存游戏设置，和精灵状态等
 local defaults = cc.UserDefault:getInstance()
 --根据键获取布尔值，第二个参数可选，如果第一个参数的值不存在，返回defaultValue
@@ -38,34 +69,3 @@ cc.UserDefault:getInstance():setIntegerForKey("integer","11")
 cc.UserDefault:getInstance():setFloatForKey("float","2.5")
 cc.UserDefault:getInstance():setDoubleForKey("double","2.6")
 cc.UserDefault:getInstance():setBoolForKey("bool",false)
-
-
-
---PLIST
-	--根为字典结构的属性列表
-local sharedFileUtils = cc.FileUtils:getInstance()--获取实例
-local fullPathForFilename = sharedFileUtils:fullPathForFilename("NotesList.plist")
-local dict = sharedFileUtils:getValueMapFromFile(fullPathForFilename)
-for key,value in pairs(dict) do
-    for i = 1, table.getn(value) do--
-        cclog("--------%d--------",i)
-        local row = value[i]
-        local date = row["date"]
-        local content = row["content"]
-        cclog("date = %s", date)
-        cclog("content : %s", content)
-    end
-end
-	--根为列表结构的属性列表
-local sharedFileUtils = cc.FileUtils:getInstance()--获取实例
-local fullPathForFilename = sharedFileUtils:fullPathForFilename("NotesList.plist")
-local vector = sharedFileUtils:getValueVectorFromFile(fullPathForFilename)
-    for i = 1, table.getn(vector) do
-        cclog("--------%d--------",i)
-        local row = vector[i]
-        local date = row["date"]
-        local content = row["content"]
-        cclog("date = %s", date)
-    	cclog("content : %s", content)
-    end
-end	

@@ -1,8 +1,8 @@
 	
-	os.time()
-	os.date()
+	os.time()--从1970.1.1.08:00到现在的秒数
+	os.date()--日期
 
-	table[1] = nil
+	table[1] = nil--#table不会改变，位置1的坑还在
 	
 	math.floor(9.9) = 9--向下取整
 	math.ceil(9.9) = 10--向上取整
@@ -13,7 +13,7 @@
 	math.random(3)--值：1,2,3
 	math.random(1,10)--值：1,2,3,4~10
 
-	print(a%b)--   0 =< 值 < b
+	print(a%b)--取余
 	
 
 	local hour = math.floor(self.goldRecruitInterval / 3600)
