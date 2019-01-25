@@ -32,6 +32,7 @@
     node:setName(string)
     node:setParent(node)
     node:stopAction(action)
+    node:setPositionNormalized(cc.p(0.8,0.5))--0~1，百分比设置位置
 
     local btn = tolua.cast(sender,"Button")
 

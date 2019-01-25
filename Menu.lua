@@ -31,6 +31,9 @@
 	mn:alignItemsHorizontallyWithPadding(100)--水平
 	mn:alignItemsInColumns(3, 3, 3, 3, 3)--三列五行
 
+    mu:isEnabled()--判断是否开启
+    mu:setEnabled(false)--无法交互
+
    
 --精灵与图片菜单
     local sprite = cc.Sprite:create("blue_tiles.png")
