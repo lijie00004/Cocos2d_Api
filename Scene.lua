@@ -1,3 +1,5 @@
+--如果一个节点频繁显示用hide不用if
+
 --获得当前平台
 local targetPlatform = cc.Application:getInstance():getTargetPlatform()
 (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform)--判断io设备
@@ -5,7 +7,7 @@ local targetPlatform = cc.Application:getInstance():getTargetPlatform()
 --短周期缓存：玩家使用的少，不跨场景，没必要长时间缓存。
 --可以在onEnter()中创建，在Exit()中清除
 --长周期缓存：玩家花费时间长，可能跨场景。建议将差不多周期纹理图放在一个拼图里
---长周期的开业在main()添加缓存
+--长周期的可以在main()添加缓存
 
 
 --FrameSize是画框，WinSize是画布
