@@ -15,9 +15,18 @@
 
 --cocos2d-3
     -- 创建ImageView对象
-    local imageView = ccui.ImageView:create("HelloWorld.png")
-    imageView:setPosition(size.width / 2, size.height / 2)
-    layer:addChild(imageView)
+        local imageView = ccui.ImageView:create("HelloWorld.png")
+        imageView:setPosition(size.width / 2, size.height / 2)
+        layer:addChild(imageView)
+
+        imageView:setScale9Enabled(true)--四个角不变，截取的范围放大或缩小
+        imageView:setCapInsets(cc.rect(10,10,10,10))
+        imageView:setContentSize(cc.size(200, 100))
+
+        imageView:ignoreContentAdaptWithSize(false)
+        imageView:setContentSize(cc.size(200, 100))
+
+        imageView:setTextureRect(cc.rect(0,0,20,20))--尺寸还是原先尺寸，截取范围放大或缩小
 
 
 
