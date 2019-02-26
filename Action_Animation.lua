@@ -63,7 +63,7 @@
     sprite:runAction(cc.EaseExponentialInOut:create(ac))--采用指数变换速度由慢到快再由快到慢
     sprite:runAction(cc.Speed:create(ac, (math.random() * 5)))--随机设置变换速度
 
---函数调用
+--函数调用(可以嵌套动作函数，和判断条件if来执行那个函数，尤其是重复循环)
 	local function CallBack1()--默认传pSender，必须用pSender，否则动作不执行
                                 --函数动作会和下个动作一起执行
 	    sprite:runAction(cc.TintBy:create(0.5, 255, 0, 255))

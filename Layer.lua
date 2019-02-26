@@ -1,4 +1,6 @@
 --cocos2d-x-2
+card:getTouchMovePos()
+self.cardBg[i]:hitTest(card:getTouchEndPos())
 self.layer:removeFromParentAndCleanup(true)
 self.layer:stopAllActions()
 

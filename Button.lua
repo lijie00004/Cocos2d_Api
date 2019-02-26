@@ -17,6 +17,10 @@ btn:addTouchEventListener(scrollOffsetBtn)
 btn:setEnabled(false)--设置成false，无法响应任何触发事件
 
 --cocos2d-x-3
+btn:setBright(false)--先设置后才能显示禁止图片
+btn:setTouchEnabled(false)
+
+btn:setEnabled(false)--子控件都不响应触摸,不知道为什么会把图片隐藏
  --Button对象事件处理
     local function menuCloseCallback(sender, eventType)
         cclog("Call menuCloseCallback...")

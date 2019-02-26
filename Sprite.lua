@@ -10,6 +10,15 @@
     image:setFlipX(true)
     mainBg:addChild(image)
     image1:setTextureRect(CCRectMake(0,0,100,100))
+--动画
+    local file = "shilianzhimen_01"
+    CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo(armatureAnimPath(file))
+    local armatureDataManager = CCArmatureDataManager:sharedArmatureDataManager()
+    armatureDataManager:addArmatureFileInfo("export/"..file..".ExportJson")
+    local armature = CCArmature:create(file)
+    self.layer:addChild(armature)
+    armature:setPosition(ccp(240,140*(1-i)+720))
+    armature:getAnimation():playWithIndex(0)
 
 
 
