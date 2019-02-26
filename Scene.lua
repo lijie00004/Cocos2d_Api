@@ -1,3 +1,5 @@
+getCastChild(self.mainLayout,0,"ImageView"):setScaleY(0.64)
+
 --如果一个节点频繁显示用hide不用if
 
 --获得当前平台
