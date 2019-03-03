@@ -7,7 +7,7 @@ local boolean = director:isNextDeltaTimeZero()--Whether or not _nextDeltaTimeZer
 local boolean = director:isPaused()--Whether or not the Director is paused.
 local boolean = director:isSendCleanupToScene()--Whether or not the replaced scene will receive the cleanup message(切换的场景是否接收清除信息)
 local Node = director:getNotificationNode()--This object will be visited after the main scene is visited(获取一个在主场景遍历后遍历的节点对象)
-local Size = director:getWinSize()--Returns the size of the OpenGL view in points
+local Size = director:getWinSize()--Returns the size of the OpenGL view in points(获取的尺寸是手机屏幕实际大小)
 local Size = director:getWinSizeInPixels()--Returns the size of the OpenGL view in pixels
 local Size = director:getVisibleSize()--Returns visible size of the OpenGL view in points
 local Vec2 = director:getVisibleOrigin()--Returns visible origin coordinate of the OpenGL view in points(获取可见屏幕的方向)
@@ -31,15 +31,6 @@ director:setNextDeltaTimeZero(boolean)--true,Sets the delta time between current
 director:setProjection(Projection projection)--Sets OpenGL projection(设置OpenGL投影)
 director:setViewport()--Sets the glViewport(设置OpenGL接口)
 director:setNotificationNode(node)--Sets the notification node(设置一个在主场景遍历后遍历的节点对象)
-director:runWithScene(scene)--Enters the Director's main loop with the given Scene
-director:pushScene(scene)--Suspends the execution of the running scene, pushing it on the stack of suspended scenes(暂停并挂起当前场景，进入下个场景)
-director:popScene()--Pops out a scene from the stack
-director:popToRootScene()--Pops out all scenes from the stack until the root scene in the queue
-director:popToSceneStackLevel(Int level)--Pops out all scenes from the stack until it reaches level（等级为0为导演，等级为1为根场景）
-director:replaceScene(Scene * scene)--Replaces the running scene with a new one
-director:pause()--Pauses the running scene.The running scene will be drawed but all scheduled timers will be paused. While paused, the draw rate will be 4 FPS to reduce CPU consumption
-director:end()--Ends the execution, releases the running scene(结束游戏)
-director:resume()--Resumes the paused scene.The scheduled timers will be activated again. The "delta time" will be 0 (as if the game wasn't paused).
 director:stopAnimation()--(停止动画)Stops the animation.Nothing will be drawn. The main loop won't be triggered anymore. If you don't want to pause your animation call [pause] instead.
 director:startAnimation()--The main loop is triggered again.Call this function only if [stopAnimation] was called earlier.
 director:drawScene()--Draw the scene.This method is called every frame. Don't call it manually.(绘制场景)
