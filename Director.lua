@@ -1,28 +1,29 @@
 local director = cc.Director:getInstance()--Gets current running Scene
 
-local FPS = director:getAnimationInterval()--Gets the FPS value(获取每帧的时间)
-local boolean = director:isDisplayStats()--Whether or not displaying the FPS on the bottom-left corner of the screen
-local count = director:getSecondsPerFrame()--GL calls OpenGL绘制（渲染）的次数，即每一帧中OpenGL指令调用的次数(获取每帧的时间（单位为秒）)
-local boolean = director:isNextDeltaTimeZero()--Whether or not _nextDeltaTimeZero is set to 0
-local boolean = director:isPaused()--Whether or not the Director is paused.
-local boolean = director:isSendCleanupToScene()--Whether or not the replaced scene will receive the cleanup message(切换的场景是否接收清除信息)
-local Node = director:getNotificationNode()--This object will be visited after the main scene is visited(获取一个在主场景遍历后遍历的节点对象)
-local Size = director:getWinSize()--Returns the size of the OpenGL view in points(获取的尺寸是手机屏幕实际大小)
-local Size = director:getWinSizeInPixels()--Returns the size of the OpenGL view in pixels
-local Size = director:getVisibleSize()--Returns visible size of the OpenGL view in points
-local Vec2 = director:getVisibleOrigin()--Returns visible origin coordinate of the OpenGL view in points(获取可见屏幕的方向)
-local Vec2 = director:convertToGL(cc.p(10,10))--Converts a screen coordinate to an OpenGL coordinate
-local Vec2 = director:convertToUI(cc.p(10,10))--Converts an OpenGL coordinate to a screen coordinate
-local float = director:getZEye()--Gets the distance between camera and near clipping frame
-local float = director:getContentScaleFactor()--Gets content scale factor.(获取表面像素大小)
-local Scheduler = director:getScheduler()--Gets the Scheduler associated with this director(获取时间调度对象)
-local ActionManager = director:getActionManager()--Gets the ActionManager associated with this director.(获取动作管理对象)
-local EventDispatcher = director:getEventDispatcher()--Gets the EventDispatcher associated with this director.(获取事件调度对象)
-local Renderer = director:getRenderer()--Returns the Renderer associated with this director.(返回渲染器)
-local Console = director:getConsole()--Returns the Console associated with this director.
-local const Mat4 = director:getProjectionMatrix(size_t index)--Gets the top matrix of projection matrix stack.
-local const std::thread::id = director:getCocos2dThreadId()--returns the cocos2d thread id.Useful to know if certain code is already running on the cocos2d thread
-local float = director:getFrameRate()--Gets Frame Rate. (获取帧率)
+director:isDisplayStats()--(boolean)Whether or not displaying the FPS on the bottom-left corner of the screen
+director:isNextDeltaTimeZero()--(boolean)Whether or not _nextDeltaTimeZero is set to 0
+director:isPaused()--(boolean)Whether or not the Director is paused.
+director:isSendCleanupToScene()--(boolean)Whether or not the replaced scene will receive the cleanup message(切换的场景是否接收清除信息)
+director:convertToGL(cc.p(10,10))--(Vec2)Converts a screen coordinate to an OpenGL coordinate
+director:convertToUI(cc.p(10,10))--(Vec2)Converts an OpenGL coordinate to a screen coordinate
+
+director:getSecondsPerFrame()--(count)GL calls OpenGL绘制（渲染）的次数，即每一帧中OpenGL指令调用的次数(获取每帧的时间（单位为秒）)
+director:getAnimationInterval()--(FPS)Gets the FPS value(获取每帧的时间)
+director:getNotificationNode()--(Node)This object will be visited after the main scene is visited(获取一个在主场景遍历后遍历的节点对象)
+director:getWinSize()--(Size)Returns the size of the OpenGL view in points(获取的尺寸是手机屏幕实际大小)
+director:getWinSizeInPixels()--(Size)Returns the size of the OpenGL view in pixels
+director:getVisibleSize()--(Size)Returns visible size of the OpenGL view in points
+director:getVisibleOrigin()--(Vec2)Returns visible origin coordinate of the OpenGL view in points(获取可见屏幕的方向)
+director:getZEye()--(float)Gets the distance between camera and near clipping frame
+director:getContentScaleFactor()--(float)Gets content scale factor.(获取表面像素大小)
+director:getScheduler()--(Scheduler)Gets the Scheduler associated with this director(获取时间调度对象)
+director:getActionManager()--(ActionManager)Gets the ActionManager associated with this director.(获取动作管理对象)
+director:getEventDispatcher()--(EventDispatcher)Gets the EventDispatcher associated with this director.(获取事件调度对象)
+director:getRenderer()--(Renderer)Returns the Renderer associated with this director.(返回渲染器)
+director:getConsole()--(Console)Returns the Console associated with this director.
+director:getProjectionMatrix(size_t index)--(Mat4)Gets the top matrix of projection matrix stack.
+director:getCocos2dThreadId()--(id)returns the cocos2d thread id.Useful to know if certain code is already running on the cocos2d thread
+director:getFrameRate()--(float)Gets Frame Rate. (获取帧率)
 
 
 director:setAnimationInterval(number)--Sets the FPS value,FPS = 1/interval 	director->setAnimationInterval(1.0/ 60);

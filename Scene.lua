@@ -1,8 +1,15 @@
 
 scene:removeAllChildren()--override function
-local String = scene:getDescription()--Gets the description string.
-local PhysicsWorld = scene:getPhysicsWorld()--Get the physics world of the scene.
-local PhysicsWorld = scene:getPhysicsWorld()--Get the physics world of the scene.
+scene:getDescription()--(String)Gets the description string.
+scene:getPhysicsWorld()--(String)Get the physics world of the scene.
+scene:registerScriptHandler(function(event)
+    if event == "enter" then--进入场景时触发
+    elseif event == "enterTransitionFinish" then--场景进入并且过渡动画完成时候触发
+    elseif event == "exit" then--退出场景时触发
+    elseif event == "exitTransitionStart" then--场景退出过渡动画开始时候触发
+    elseif event == "cleanup" then--场景销毁时候触发
+    end
+end)
 
 --场景过渡动画
 local ts = cc.TransitionJumpZoom:create(1.0, settingScene)--第一个参数是动画持续时间，第二个是场景对象
