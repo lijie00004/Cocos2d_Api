@@ -53,16 +53,11 @@ self.layer:registerScriptTouchHandler(onTouch)
 self.layer:setTouchEnabled(true)
 
 local function onNodeEvent(tag)
-	if tag == "exit" then--判断是否为退出层事件
+	if tag == "exit" then--判断是否为退出层事件,enter
 		layer:unsheduleUpdate()--停止游戏调度
 	end
 end
 layer:registerScriptHandler(onNodeEvent)--注册层事件监听器
 										--sprite也可以注册层级事件监听器
 
-registerScriptTouchHandler--注册触屏事件
-
-registerScriptTapHandle--注册点击事件
-
-registerScriptHandler--注册基本事件 包括 触屏 层的进入 退出 事件										
 
