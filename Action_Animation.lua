@@ -1,3 +1,40 @@
+--old version
+    --动画
+    --parent = image:getVirtualRenderer()--获取渲染节点,ImageView对渲染节点进行了一层封装
+    local anim = Animation:create(file, parent)
+    anim:setFps(anim:getFps() * speed)
+
+    local array = CCArray:create()
+    array:addObject(anim)
+    parent:runAction(CCSequence:create(array))
+    or
+    parent:runAction(anim)
+
+
+    local array = CCArray:create()
+    array:addObject(CCFadeTo:create(1,50))
+    array:addObject(CCFadeTo:create(1,255))
+    local armatureDataManager = CCArmatureDataManager:sharedArmatureDataManager()
+    armatureDataManager:addArmatureFileInfo("export/shouchong_daochu.ExportJson")
+    local energyAnim = CCArmature:create("shouchong_daochu")
+    energyAnim:runAction(CCRepeatForever:create(CCSequence:create(array_2)))
+    energyAnim:getAnimation():playWithIndex(0)
+    node:addNode(energyAnim)
+
+    armatureDataManager:addArmatureFileInfo("images/naruto/csb/shengfu.csb")
+    animation_1 = CCArmature:create("shengfu")
+    animation_2 = CCArmature:create("shengfu")
+    animation:setPosition(ccp(240,700))
+    self.layer:addChild(animation,-1)
+    animation_1:getAnimation():play("sheng_2")--胜利光圈
+    animation_2:getAnimation():play("sheng")--胜利文字
+
+    --清理
+    energyAnim:removeFromParentAndCleanup(true)
+    CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo("images/naruto/csb/shengfu.csb")
+        --可选
+        energyAnim = nil
+        layer:stopAllActions()
 --瞬间动作
 	local p = cc.p(math.random() * size.width, math.random() * size.height)
 	sprite:runAction(cc.Place:create(p))--移动到指定位置

@@ -1,4 +1,6 @@
 --old version
+self.layer:retain()
+
 card:getTouchMovePos()
 self.cardBg[i]:hitTest(card:getTouchEndPos())
 self.layer:removeFromParentAndCleanup(true)
