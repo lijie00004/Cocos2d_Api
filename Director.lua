@@ -7,13 +7,13 @@ director:isSendCleanupToScene()--(boolean)Whether or not the replaced scene will
 director:convertToGL(cc.p(10,10))--(Vec2)Converts a screen coordinate to an OpenGL coordinate
 director:convertToUI(cc.p(10,10))--(Vec2)Converts an OpenGL coordinate to a screen coordinate
 
-director:getSecondsPerFrame()--(count)GL calls OpenGL绘制（渲染）的次数，即每一帧中OpenGL指令调用的次数(获取每帧的时间（单位为秒）)
+director:getSecondsPerFrame()--(count)GL calls OpenGL绘制（渲染）的次数，即每一帧中OpenGL指令调用的次数
 director:getAnimationInterval()--(FPS)Gets the FPS value(获取每帧的时间)
 director:getNotificationNode()--(Node)This object will be visited after the main scene is visited(获取一个在主场景遍历后遍历的节点对象)
 director:getWinSize()--(Size)Returns the size of the OpenGL view in points(获取的尺寸是手机屏幕实际大小)
 director:getWinSizeInPixels()--(Size)Returns the size of the OpenGL view in pixels
-director:getVisibleSize()--(Size)Returns visible size of the OpenGL view in points
-director:getVisibleOrigin()--(Vec2)Returns visible origin coordinate of the OpenGL view in points(获取可见屏幕的方向)
+director:getVisibleSize()--(Size)Returns visible size of the OpenGL view in points(表示获得视口(可视区域)的大小，如果DesignResolutionSize跟屏幕尺寸一样大，则getVisibleSize等于getWinSize)
+director:getVisibleOrigin()--(Vec2)Returns visible origin coordinate of the OpenGL view in points(表示可视区域的起点坐标，这在处理相对位置的时候非常有用，确保节点在不同分辨率下的位置一致
 director:getZEye()--(float)Gets the distance between camera and near clipping frame
 director:getContentScaleFactor()--(float)Gets content scale factor.(获取表面像素大小)
 director:getScheduler()--(Scheduler)Gets the Scheduler associated with this director(获取时间调度对象)
@@ -31,7 +31,10 @@ director:setDisplayStats(boolean)--Display the FPS on the bottom-left corner of 
 director:setNextDeltaTimeZero(boolean)--true,Sets the delta time between current frame and next frame is 0(是否设置两帧之前时间增量为0)
 director:setProjection(Projection projection)--Sets OpenGL projection(设置OpenGL投影)
 director:setViewport()--Sets the glViewport(设置OpenGL接口)
+--设置后节点独立于场景之外单独绘制的，不会随着场景的切换而消失,即使父节点不在。
 director:setNotificationNode(node)--Sets the notification node(设置一个在主场景遍历后遍历的节点对象)
+director:setNotificationNode(nil)--delete notificationNode
+
 director:stopAnimation()--(停止动画)Stops the animation.Nothing will be drawn. The main loop won't be triggered anymore. If you don't want to pause your animation call [pause] instead.
 director:startAnimation()--The main loop is triggered again.Call this function only if [stopAnimation] was called earlier.
 director:drawScene()--Draw the scene.This method is called every frame. Don't call it manually.(绘制场景)

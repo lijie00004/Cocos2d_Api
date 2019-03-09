@@ -1,25 +1,39 @@
 --old version
     --动画
     --parent = image:getVirtualRenderer()--获取渲染节点,ImageView对渲染节点进行了一层封装
-    local anim = Animation:create(file, parent)
+    local anim = Animation:create("anim/choujiang.ani", parentNode)
     anim:setFps(anim:getFps() * speed)
 
     local array = CCArray:create()
     array:addObject(anim)
+    array:addObject(CCCallFuncN:create(function))
     parent:runAction(CCSequence:create(array))
     or
     parent:runAction(anim)
 
 
-    local array = CCArray:create()
-    array:addObject(CCFadeTo:create(1,50))
-    array:addObject(CCFadeTo:create(1,255))
+
     local armatureDataManager = CCArmatureDataManager:sharedArmatureDataManager()
     armatureDataManager:addArmatureFileInfo("export/shouchong_daochu.ExportJson")
     local energyAnim = CCArmature:create("shouchong_daochu")
-    energyAnim:runAction(CCRepeatForever:create(CCSequence:create(array_2)))
+    energyAnim:setPosition(ccp(240, 180))--energyAnim is equivalent to node
     energyAnim:getAnimation():playWithIndex(0)
-    node:addNode(energyAnim)
+    energyAnim:getAnimation():setSpeedScale(self.speed * speed * 2)
+    node:addNode(energyAnim)--using addChild will give you an error
+
+    local function finish()
+        energyAnim:getAnimation():stop()
+        armature:removeFromParentAndCleanup(true)
+    end
+    local array = CCArray:create()
+    array:addObject(CCFadeTo:create(1,50))
+    array:addObject(CCFadeTo:create(1,255))
+    array:addObject(CCCallFuncN:create(finish))
+    energyAnim:runAction(CCRepeatForever:create(CCSequence:create(array)))
+
+    energyAnim:getAnimation():setMovementEventCallFunc(finish)--动画播放完后执行
+
+
 
     armatureDataManager:addArmatureFileInfo("images/naruto/csb/shengfu.csb")
     animation_1 = CCArmature:create("shengfu")
@@ -32,9 +46,9 @@
     --清理
     energyAnim:removeFromParentAndCleanup(true)
     CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo("images/naruto/csb/shengfu.csb")
-        --可选
-        energyAnim = nil
-        layer:stopAllActions()
+    --可选
+    energyAnim = nil
+    layer:stopAllActions()
 --瞬间动作
 	local p = cc.p(math.random() * size.width, math.random() * size.height)
 	sprite:runAction(cc.Place:create(p))--移动到指定位置
@@ -145,8 +159,8 @@
     sprite:stopAllActions()--停止动画
 
 
-if num_3 ~= 0 then
-    node:runAction(CCScaleTo:create(0.4,1.5))
+
+    node:runAction(CCScaleTo:create(0.4,1.5))--amplification
     local lb_num = Label:create()
     lb_num:setFontName(LFont())
     lb_num:setFontSize(15)
@@ -163,15 +177,15 @@ if num_3 ~= 0 then
     array_1:addObject(CCCallFuncN:create(moveFinish))
     lb_num:runAction(CCSequence:create(array_1))
 
-    local count = math.ceil(-num_3/10)
+    local count = math.ceil(-num/10)
     local array_2 = CCArray:create()
     for i=1,count do
         local function modify_1(node)
-            node:setText(bigNumSwith(CurPlayer:propNumWithId(107011)))
+            node:setText(bigNumSwith(num-10*i))
             node:runAction(CCScaleTo:create(0.4,1))
         end
         local function modify_2(node)
-            node:setText(num_1-10*i)
+            node:setText(num-10*i)
         end
         array_2:addObject(CCDelayTime:create(0.1))
         if i == count then
@@ -182,4 +196,3 @@ if num_3 ~= 0 then
         
     end
     node:runAction(CCSequence:create(array_2))
-end

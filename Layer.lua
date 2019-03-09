@@ -3,9 +3,6 @@ self.layer:retain()
 
 card:getTouchMovePos()
 self.cardBg[i]:hitTest(card:getTouchEndPos())
-self.layer:removeFromParentAndCleanup(true)
-self.layer:stopAllActions()
-
 
 local layer = CCLayer:create()
 local colorBg = CCLayerColor:create(ccc4(0, 0, 0, 180), 480, 854)
@@ -41,8 +38,6 @@ local listener2 = listener1:clone()
 local eventDispatcher = scene:getEventDispatcher()--scene could be cc.Director:getInstance()
 eventDispatcher:addEventListenerWithSceneGraphPriority(listener1, node)--和node绑定，such as:layer,sprite,无需手动删除
 eventDispatcher:addEventListenerWithFixedPriority(listener1,int)--int越小，先响应事件,int不能为0，eventDispatcher:removeEventListener(listener1)
-
-
 
 
 local bg = cc.LayerColor:create(cc.c3b(255, 255, 255))
