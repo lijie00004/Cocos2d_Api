@@ -143,3 +143,43 @@
 
 
     sprite:stopAllActions()--停止动画
+
+
+if num_3 ~= 0 then
+    node:runAction(CCScaleTo:create(0.4,1.5))
+    local lb_num = Label:create()
+    lb_num:setFontName(LFont())
+    lb_num:setFontSize(15)
+    lb_num:setText(num_3)
+    lb_num:setColor(ccc3(255, 0, 0))
+    lb_num:setAnchorPoint(ccp(0,0.5))
+    node:addChild(lb_num)
+
+    local function moveFinish(node)
+        node:removeFromParentAndCleanup(true)
+    end
+    local array_1 = CCArray:create()
+    array_1:addObject(CCMoveBy:create(1.0, ccp(0, 10)))
+    array_1:addObject(CCCallFuncN:create(moveFinish))
+    lb_num:runAction(CCSequence:create(array_1))
+
+    local count = math.ceil(-num_3/10)
+    local array_2 = CCArray:create()
+    for i=1,count do
+        local function modify_1(node)
+            node:setText(bigNumSwith(CurPlayer:propNumWithId(107011)))
+            node:runAction(CCScaleTo:create(0.4,1))
+        end
+        local function modify_2(node)
+            node:setText(num_1-10*i)
+        end
+        array_2:addObject(CCDelayTime:create(0.1))
+        if i == count then
+            array_2:addObject(CCCallFuncN:create(modify_1))
+        else
+            array_2:addObject(CCCallFuncN:create(modify_2))
+        end
+        
+    end
+    node:runAction(CCSequence:create(array_2))
+end
