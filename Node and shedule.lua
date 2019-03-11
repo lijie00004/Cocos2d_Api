@@ -5,8 +5,9 @@
 
     
 --node
-    btn:getParent()
-    local boolean = node:isRunning()--Returns whether or not the node is "running".
+    node:getParent()
+    node:getDescription()--(String)
+    node:isRunning()--(Boolean)Returns whether or not the node is "running".
     node:addchild(childNode,0,123)--0表示绘制顺序，123表示标签
     node:getChildByTag(int)
     node:getContentSize()--获取文本内容大小
