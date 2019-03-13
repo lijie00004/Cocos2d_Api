@@ -5,8 +5,9 @@
 
     
 --node
-    btn:getParent()
-    local boolean = node:isRunning()--Returns whether or not the node is "running".
+    node:getParent()
+    node:getDescription()--(String)
+    node:isRunning()--(Boolean)Returns whether or not the node is "running".
     node:addchild(childNode,0,123)--0表示绘制顺序，123表示标签
     node:getChildByTag(int)
     node:getContentSize()--获取文本内容大小
@@ -43,7 +44,7 @@
     node:removeChild(nodeName, true)----清除子节点，并清理所有操作
     node:removeChildByTag(123,true)--true表示停止该子节点上一切动作
     node:removeFromParentAndCleanup(true)--从父节点删除node节点，并停止该节点上一切动作
-
+    node:stopAllActions()
 
 
   --暂停当前层中的node
@@ -81,8 +82,12 @@
     local function shootBullet(delta)
     end
     --每0.2秒调用shootBullet函数,false表示无限次
-    schedulerId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(shootBullet, 0.2, false)
+    schedulerId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(shootBullet, 0.2, false)--cc.Director:getInstance():getScheduler()全局定时器
     cc.Director:getInstance():getScheduler():unscheduleScriptEntry(schedulerId)
+
+    setTimeScale--未确认，动作和动画执行速度
+    local scheduler = cc.Scheduler:new()--未确认
+    local actionMgr = cc.ActionManager:new()--未确认
 
 
 

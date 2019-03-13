@@ -1,5 +1,4 @@
 
-scene:removeAllChildren()--override function
 scene:getDescription()--(String)Gets the description string.
 scene:getPhysicsWorld()--(String)Get the physics world of the scene.
 scene:registerScriptHandler(function(event)
