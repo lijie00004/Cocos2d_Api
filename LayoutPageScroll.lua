@@ -43,6 +43,9 @@
 
     scrollList:isEnabled()--true or false
 
+    local container = scrollView:getInnerContainer()
+    container:setPosition(ccp(x, y))--显示坐标区域
+
 
 --cocos2d-3
     --layout
