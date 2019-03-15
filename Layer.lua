@@ -24,7 +24,7 @@ node_1:addTouchEventListener(buttonEvent)
 
 local layer = CCLayer:create()
 local colorBg = CCLayerColor:create(ccc4(0, 0, 0, 180), 480, 854)
-
+--触摸必须使用uiLayer，还必须用addWidget添加第一个节点
 self.uiLayer = TouchGroup:create()
 self.layer:addChild(self.uiLayer)
 
@@ -63,7 +63,7 @@ eventDispatcher:addEventListenerWithFixedPriority(listener1,int)--int越小，�
 local bg = cc.LayerColor:create(cc.c3b(255, 255, 255))
 
 图层触摸事件
-local function onTouch(eventType, x, y)
+local function onTouch(eventType, x, y)--没有事件类型选项
 	MainLayer:removeLayer("GetItemLayer");
 end
 self.layer:registerScriptTouchHandler(onTouch)

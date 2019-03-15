@@ -6,11 +6,11 @@
 	label:setColor(cc.c3b(248,251,15))
 	label:enableStroke(cc.c3b(131,67,17),0.5)
 
-	label:setTextAreaSize(CCSize(420,50))--自动换行
+	label:setTextAreaSize(CCSize(420,50))--可有可无
 	label:ignoreContentAdaptWithSize(false)
 	label:setSize(CCSize(420, 50))
 	     
-	label:setTextHorizontalAlignment(kCCTextAlignmentLeft)--设置文本水平对齐方式--Right
+	label:setTextHorizontalAlignment(kCCTextAlignmentLeft)--设置文本水平对齐方式--Right--Center
 	label:setTextVerticalAlignment(kCCVerticalTextAlignmentCenter)--设置文本垂直对齐方式--垂直文本对齐中心
 
 --cocos2d-x-3
