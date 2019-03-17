@@ -12,7 +12,7 @@ end)
 
 --场景过渡动画
 local ts = cc.TransitionJumpZoom:create(1.0, settingScene)--第一个参数是动画持续时间，第二个是场景对象
-cc.Director:getInstance():pushScene(ts)
+cc.Director:getInstance():replaceScene(ts)
            --TransitionFadeTR       网格过渡动画，从左下到右上
            --TransitionJumpZoom     跳动过渡动画
            --TransitionCrossFade    交叉渐变过渡动画

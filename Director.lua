@@ -11,7 +11,6 @@ director:getTotalFrames()--(int)(总共已经渲染了多少帧)
 
 director:setAnimationInterval(number)--Sets the FPS value,FPS = 1/interval 	director->setAnimationInterval(1.0/ 60);
 director:setDisplayStats(boolean)--Display the FPS on the bottom-left corner of the screen
-director:setNextDeltaTimeZero(boolean)--true,Sets the delta time between current frame and next frame is 0(是否设置两帧之前时间增量为0)
 
 --设置后节点独立于场景之外单独绘制的，不会随着场景的切换而消失,即使父节点不在。
 director:setNotificationNode(node)--Sets the notification node(设置一个在主场景遍历后遍历的节点对象)
@@ -31,6 +30,7 @@ director:setEventDispatcher(EventDispatcher* dispatcher)--Sets the EventDispatch
 
 
 --expand
+director:setNextDeltaTimeZero(boolean)--true,Sets the delta time between current frame and next frame is 0(是否设置两帧之前时间增量为0)
 director:setProjection(Projection projection)--Sets OpenGL projection(设置OpenGL投影)
 director:setViewport()--Sets the glViewport(设置OpenGL接口)
 director:getWinSizeInPixels()--(Size)Returns the size of the OpenGL view in pixels

@@ -8,8 +8,9 @@
     node:getParent()
     node:getDescription()--(String)
     node:isRunning()--(Boolean)Returns whether or not the node is "running".
-    node:addchild(childNode,0,123)--0表示绘制顺序，123表示标签
+    node:addchild(childNode,ZOrder,tag)
     node:getChildByTag(int)
+    node:getChildByName(string)
     node:getContentSize()--获取文本内容大小
     node:getPosition()
     node:getScene()
@@ -19,13 +20,12 @@
     node:getChildrenCount()
     node:removeChildByTag(tag,true)
     node:removeChildByName(tag,true)
-    node:removeAllChildren()--自带clean
     node:runAction(action)
     node:resume()
     node:pause()
     node:removeFromParent(true)--true表示clean一切
     node:setAnchorPoint(cc.p(0.5,0.5))
-    node:setPosition(cc.p(0.5,0.5))
+    node:setPosition(cc.p(100,100))--or (100,100)
     node:setGlobalZOrder(float)
     node:setScale(float)
     node:setSkewX(50)--设置倾斜
@@ -39,7 +39,7 @@
 
     local btn = tolua.cast(sender,"Button")
 
-    
+    node:removeAllChildren()--自带clean
     node:removeAllChildrenWithCleanup(true)--清除所有子节点，并清理所有操作
     node:removeChild(nodeName, true)----清除子节点，并清理所有操作
     node:removeChildByTag(123,true)--true表示停止该子节点上一切动作
