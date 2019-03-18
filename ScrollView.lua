@@ -32,8 +32,6 @@
     scrollView:isBounceEnabled()--boolean
     scrollView:setInertiaScrollEnabled(boolean)--滚动惯性
     scrollView:isInertiaScrollEnabled()--boolean
-    scrollView:setScrollBarEnabled(boolean)--启用滚动条
-    scrollView:isScrollBarEnabled()--boolean
     scrollView:setTouchTotalTimeThreshold(float)--Set the touch total time threshold
     scrollView:getTouchTotalTimeThreshold(float)--Get the touch total time threshold
 
@@ -54,6 +52,8 @@
     scrollView:isScrollBarAutoHideEnabled()--boolean
     scrollView:setScrollBarAutoHideTime(float)--Set scroll bar auto hide time
     scrollView:getScrollBarAutoHideTime()--float
+    scrollView:setScrollBarEnabled(boolean)--启用滚动条
+    scrollView:isScrollBarEnabled()--boolean
 
 
 

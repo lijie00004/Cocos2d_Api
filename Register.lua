@@ -1,8 +1,3 @@
---event事件 touch触碰
-local node = event:getCurrentTarget()--获取事件所绑定的node
-local position = touch:getLocation()--获取坐标
-
-
 --registerScriptHandler, 触屏 场景 和层的进入退出
 	--对象为layer
 		local function onNodeEvent(event)--event包括exit enter 

@@ -1,5 +1,4 @@
 
-scene:getDescription()--(String)Gets the description string.
 scene:getPhysicsWorld()--(String)Get the physics world of the scene.
 scene:registerScriptHandler(function(event)
     if event == "enter" then--进入场景时触发

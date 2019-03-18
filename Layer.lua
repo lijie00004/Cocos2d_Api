@@ -17,19 +17,17 @@
     layerColor:changeHeight(height)--Change height in Points.
     layerColor:changeWidthAndHeight(width,height)--Change height in Points.
     layerColor:setContentSize(Size)--Sets the untransformed size of the node.
-    layerColor:getDescription()--It makes debugging easier
 
-    local layerGradient = cc.LayerGradient:create(cc.c3b(255, 255, 255),cc.c3b(0,0,0),ccp(1,1))--cc.c4b(255, 255, 255,255)
+    local layerGradient = cc.LayerGradient:create(cc.c3b(255, 255, 255),cc.c3b(0,0,0),cc.p(1,1))--cc.c4b(255, 255, 255,255)
 
-    local layerGradient = cc.LayerMultiplex:create()
-    local layerGradient = cc.LayerMultiplex:createWithLayer(Layer)--Creates a LayerMultiplex with one layer.
-    local layerGradient = cc.LayerMultiplex:createWithArray(Vector)--Creates a LayerMultiplex with an array of layers.
-    layerGradient:addLayer(Layer)--Add a certain layer to LayerMultiplex.
-    layerGradient:switchTo(int)--int(从0开始），Switches to a certain layer indexed by n.
-    layerGradient:switchToAndReleaseMe(int)--不能用release the current layer and switches to another layer indexed by n
+    local layerMultiplex = cc.LayerMultiplex:create(Layer_1,Layer_2,Layer_3...)
+    local layerMultiplex = cc.LayerMultiplex:createWithArray(Vector)--Creates a LayerMultiplex with an array of layers.
+    layerMultiplex:addLayer(Layer)--Add a certain layer to LayerMultiplex.
+    layerMultiplex:switchTo(int)--int(从0开始），Switches to a certain layer indexed by n.
+    layerMultiplex:switchToAndReleaseMe(int)--不能用release the current layer and switches to another layer indexed by n
 
     local function onNodeEvent(event)
-    	if event == "exit" then--判断是否为退出层事件,enter
+    	if event == "enter" then--判断是否为退出层事件,enter
     		layer:unsheduleUpdate()--停止游戏调度
         elseif event == "exit" then
     	end
