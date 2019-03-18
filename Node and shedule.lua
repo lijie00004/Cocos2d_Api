@@ -1,14 +1,104 @@
+--Vec2(cc.p(1,1))
+--Size(cc.size(100,100))
+local node = Node:create()
+node:getDescription()--(String)
+node:getLocalZOrder()--(int)
+node:getGlobalZOrder()--(int)
+node:getScaleX()--(float)--getScale()
+node:getPosition()--(Vec2)getPositionX
+node:getPositionNormalized()--(Vec2)
+node:getSkewX()--(float)getSkewY
+node:getAnchorPoint()--获得锚点相对坐标
+node:getAnchorPointInPoints()--获得锚点绝对坐标
+node:getContentSize()--(Size.width,Size.height)
+node:isVisible()
+node:getRotation()
+node:getRotationSkewX()
+node:getChildByTag(int)
+node:getChildByName(string)
+node:getChildren()--Returns the amount of children.
+node:getChildrenCount()
+node:getParent()--(Node)
+node:getTag()
+node:getName()
+node:getUserData()
+node:isRunning()--(boolean)
+node:getScene()--Returns the Scene that contains the Node.
+node:getBoundingBox()--(table){x = ,y = ,width = , height = }图片左下到父节点锚点的距离，图片大小
+node:getEventDispatcher()--The event dispatcher of scene.
+node:getActionManager()--Gets the ActionManager object that is used by all actions.
+node:getActionByTag()--(action)Gets an action from the running action list by its tag.
+node:getNumberOfRunningActions()--(int)运行几组动作
+node:getNumberOfRunningActionsByTag(tag)--(int)
+node:getScheduler()
+node:getOpacity()
+node:isCascadeOpacityEnabled()
+node:getColor()--(Color3B){r = ,b = , g = }
+node:getDisplayedColor()--(Color3B){r = ,b = , g = }
+node:isCascadeColorEnabled()
+node:isOpacityModifyRGB()
 
---cocos命令指令
-    cocos new HelloLua -p com.work6 -l lua -d D:/cocos
+node:setLocalZOrder(int)--LocalZOrder is the 'key' used to sort the node relative to its siblings.
+node:setGlobalZOrder(int)
+node:setScaleX(float)--setScale(0.7,1)
+node:setPosition(cc.p(100,100))--or (100,100)setPositionX
+node:setPositionNormalized(cc.p(0.1,0.1))--Sets the position (x,y) using values between 0 and 1
+node:setSkewX(float)--(setSkewY)Changes the X skew angle of the node in degrees.
+node:setAnchorPoint(Vec2)-- or (0,0)
+node:setContentSize(Size)-- or (100,100) ignoreContentAdaptWithSize(flase)
+node:setVisible(Boolean)
+node:setRotation(float)--0是默认的旋转角度。正值顺时针旋转节点，负值逆时针旋转节点。
+node:setRotationSkewX(float)
+node:addchild(childNode,ZOrder,tag)-- or childNode,ZOrder,string
+node:enumerateChildren("//Abby/Normal",callback)--return true to stop at first match用于枚举某个Node节点的子节点，并让名字符合"name通配符"的子节点执行callback函数。
+node:setParent(Node)
+node:removeFromParent()--(自带cleanup) == removeFromParentAndCleanup(true)
+node:removeFromParentAndCleanup(flase)--cleanup true if all actions and callbacks on this node should be removed, false otherwise.
+node:removeChild(Node,Boolean)--cleanup all running actions depending on the Boolean parameter.
+node:removeChildByTag(tag,Boolean)--cleanup all running actions depending on the Boolean parameter.
+node:removeChildByName(string,Boolean)--cleanup all running actions depending on the Boolean parameter.
+node:removeAllChildren()--Removes all children from the container with a cleanup
+node:removeAllChildrenWithCleanup(Boolean)
+node:reorderChild(child,localZOrder)--根据新的z值重新排序子元素。
+node:sortAllChildren()--在绘制之前对子数组排序一次，而不是每次添加或重新排序子数组。
+node:setTag()
+node:setName()
+node:scheduleUpdateWithPriorityLua(handler,priority)
+node:cleanup()--Stops all running actions and schedulers
+node:setEventDispatcher(EventDispatcher)--Set event dispatcher for scene.
+node:setActionManager(ActionManager)--Sets the ActionManager object that is used by all actions.
+node:runAction(Action)
+node:stopAllActions()--Stops and removes all actions from the running action list
+node:stopAction(Action)--Stops and removes an action from the running action list.
+node:stopActionByTag(tag)--Removes an action from the running action list by its tag.
+node:stopAllActionsByTag(tag)--Removes all actions from the running action list by its tag.
+node:setScheduler(Scheduler)--Sets a Scheduler object that is used to schedule all "updates" and timers.
+node:resume()--(lua没用)Resumes all scheduled selectors, actions and event listeners.
+node:pause()--(lua没用)Pauses all scheduled selectors, actions and event listeners.
+node:setOpacity(opacity)
+node:updateDisplayedOpacity(opacity)--忽视setCascadeOpacityEnabled(true),Update the displayed opacity of node with it's parent opacity;.
+node:setCascadeOpacityEnabled(boolen)--开启后父节点的透明度会影响子节点透明度
+node:setColor(cc.c3b(255,255,0))
+node:updateDisplayedColor(cc.c3b(255,255,0))
+node:setCascadeColorEnabled(boolen)
+node:setOpacityModifyRGB(boolen)--如果您希望不透明度影响颜色属性，则将其设置为true。
+
+
+
+
+
+
+
+
+
+
+
 
 
     
 --node
     node:getParent()
-    node:getDescription()--(String)
     node:isRunning()--(Boolean)Returns whether or not the node is "running".
-    node:addchild(childNode,ZOrder,tag)
     node:getChildByTag(int)
     node:getChildByName(string)
     node:getContentSize()--获取文本内容大小
@@ -16,18 +106,14 @@
     node:getScene()
     node:getName()--与Tag差不多
     node:getChildByTag(tag)
-    node:getChildren()--返回一个数组
     node:getChildrenCount()
     node:removeChildByTag(tag,true)
     node:removeChildByName(tag,true)
     node:runAction(action)
     node:resume()
     node:pause()
-    node:removeFromParent(true)--true表示clean一切
     node:setAnchorPoint(cc.p(0.5,0.5))
-    node:setPosition(cc.p(100,100))--or (100,100)
     node:setGlobalZOrder(float)
-    node:setScale(float)
     node:setSkewX(50)--设置倾斜
     node:setRotation(50)
     node:setVisible(flase)
@@ -43,7 +129,6 @@
     node:removeAllChildrenWithCleanup(true)--清除所有子节点，并清理所有操作
     node:removeChild(nodeName, true)----清除子节点，并清理所有操作
     node:removeChildByTag(123,true)--true表示停止该子节点上一切动作
-    node:removeFromParentAndCleanup(true)--从父节点删除node节点，并停止该节点上一切动作
     node:stopAllActions()
 
 

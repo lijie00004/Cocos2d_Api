@@ -1,3 +1,15 @@
+Ref-->Node-->Scene-->TransitionScene
+		  -->Layer-->ScrollView-->TableView
+		  		  -->LayerColor-->LayerGradient
+		  		  -->LayerMultiplex
+		  		  -->Menu
+		  -->Sprite
+		  -->Label
+		  -->MenuItem
+		  --ParticleSystem
+		  --TMXTiledMap
+--cocos命令指令
+    cocos new HelloLua -p com.work6 -l lua -d D:/cocos
 --old version
 getCastChild(self.mainLayout,0,"ImageView"):setScaleY(0.64)--cocos2d
 
