@@ -6,7 +6,7 @@ node:getDescription()--(String)
 node:getLocalZOrder()--(int)
 node:getScaleX()--(float)--getScale()
 node:getPosition()--(Vec2)getPositionX
---node:getPositionNormalized()--(Vec2)
+node:getPositionNormalized()--(Vec2)
 node:getSkewX()--(float)getSkewY
 node:getAnchorPoint()--获得锚点相对坐标
 node:getAnchorPointInPoints()--获得锚点绝对坐标
@@ -36,7 +36,7 @@ node:isOpacityModifyRGB()
 node:setLocalZOrder(int)--LocalZOrder is the 'key' used to sort the node relative to its siblings.
 node:setScaleX(float)--setScale(0.7,1)
 node:setPosition(cc.p(100,100))--or (100,100)setPositionX
---node:setPositionNormalized(cc.p(0.1,0.1))--Sets the position (x,y) using values between 0 and 1
+node:setPositionNormalized(cc.p(0.1,0.1))--(cc.p(1,1)表示节点的锚点在父节点右上角)Sets the position (x,y) using values between 0 and 1
 node:setSkewX(float)--(setSkewY)Changes the X skew angle of the node in degrees.
 node:setAnchorPoint(Vec2)-- or (0,0)
 node:setContentSize(Size)-- or (100,100) ignoreContentAdaptWithSize(flase)
@@ -75,42 +75,25 @@ node:setOpacityModifyRGB(boolen)--如果您希望不透明度影响颜色属性�
 
 
 
+--暂停
+Layer:pause()
+if (schedulerId ~= nil) then
+scheduler:unscheduleScriptEntry(schedulerId)
+end
+local pChildren = Layer:getChildren()
+for i = 1, #pChildren, 1 do
+local child = pChildren[i]
+child:pause()
+end
 
-
-
-
-
-
-
-
-
-
-    
---node
-  --暂停当前层中的node
-    Layer:pause()
-    if (schedulerId ~= nil) then
-        scheduler:unscheduleScriptEntry(schedulerId)
-    end
-
-    --layer子节点暂停
-    local pChildren = Layer:getChildren()
-    for i = 1, #pChildren, 1 do
-        local child = pChildren[i]
-        child:pause()
-    end
-
-
-    --继续
-    Layer:resume()
-    schedulerId = nil
-    schedulerId = scheduler:scheduleScriptFunc(shootBullet, 0.2, false)
-
-    local pChildren = Layer:getChildren()
-    for i = 1, #pChildren, 1 do
-        local child = pChildren[i]
-        child:resume()
-    end
+--继续
+Layer:resume()
+scheduler:scheduleScriptFunc(shootBullet, 0.2, false)
+local pChildren = Layer:getChildren()
+for i = 1, #pChildren, 1 do
+local child = pChildren[i]
+child:resume()
+end
 
 
 --定时器
@@ -119,29 +102,8 @@ node:setOpacityModifyRGB(boolen)--如果您希望不透明度影响颜色属性�
 	layer:unscheduleUpdate()--停止调度
 
     --当Node被移除出场景或者其他情况下，调定时器依旧在
-    local function shootBullet(delta)
-    end
     --每0.2秒调用shootBullet函数,false表示无限次
-    schedulerId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(shootBullet, 0.2, false)--cc.Director:getInstance():getScheduler()全局定时器
+    schedulerId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(callback, 0.2, false)--cc.Director:getInstance():getScheduler()全局定时器
     cc.Director:getInstance():getScheduler():unscheduleScriptEntry(schedulerId)
 
-    setTimeScale--未确认，动作和动画执行速度
-    local scheduler = cc.Scheduler:new()--未确认
-    local actionMgr = cc.ActionManager:new()--未确认
-
-
-
---坐标系
-	cc.Director:getInstance():convertToGL(cc.p(930, 540))--UI原点在左上角--GL原点在左下角
-                       --convertToUI
-    --世界坐标表示以0,0,为原点，模型坐标是以节点为原点
-	local posX, posY = node2:getPosition()
-    local point1 = node1:convertToNodeSpace(cc.p(posX, posY))--将世界坐标转换为模型坐标
-    local point3 = node1:convertToNodeSpaceAR(cc.p(posX, posY))--相对锚点将世界坐标转换为模型坐标
-
-    local posX,posY = node2:getPosition()
-    local point1 = node1:convertToWorldSpace(cc.p(posX,posY))----将模型坐标转换为世界坐标
-    local point3 = node1:convertToWorldSpaceAR(cc.p(posX,posY))--相对锚点将模型坐标转换为世界坐标
-
-    world2Local(point)--世界坐标转换为模型坐标
-    local2World(point)--模型坐标转换为世界坐标
+    cc.Director:getInstance():getScheduler():setTimeScale(1.0)--动作、动画执行速度

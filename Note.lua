@@ -8,6 +8,17 @@ Ref-->Node-->Scene-->TransitionScene
 		  -->MenuItem
 		  --ParticleSystem
 		  --TMXTiledMap
+
+--坐标系
+    --世界坐标表示以0,0,为原点，模型坐标是以节点为原点
+	local posX, posY = node2:getPosition()
+    local point1 = node1:convertToNodeSpace(cc.p(posX, posY))--将世界坐标转换为模型坐标
+    local point3 = node1:convertToNodeSpaceAR(cc.p(posX, posY))--相对锚点将世界坐标转换为模型坐标
+
+    local point1 = node1:convertToWorldSpace(cc.p(posX,posY))----将模型坐标转换为世界坐标
+    local point3 = node1:convertToWorldSpaceAR(cc.p(posX,posY))--相对锚点将模型坐标转换为世界坐标
+
+
 --cocos命令指令
     cocos new HelloLua -p com.work6 -l lua -d D:/cocos
 --old version

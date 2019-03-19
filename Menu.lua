@@ -1,5 +1,26 @@
 --cocos2d-x-3
+    mn = cc.Menu:create()--or create(menuItem)
+    mn:addChild(menuItem,localZOrder,tag)
+    mn:alignItemsVertically()--垂直方向
+    mn:alignItemsHorizontally()--水平
+    mn:alignItemsVerticallyWithPadding(100)--垂直排列间距
+    mn:alignItemsHorizontallyWithPadding(100)--水平
+    mn:alignItemsInColumns(3, 3, 3, 3, 3)--三列五行
+    mn:alignItemsInRows(3, 3, 3, 3, 3)--五列三行
+    mu:setEnabled(false)--无法交互
 --文本菜单
+    local menuLabel = cc.MenuItemLabel:create(menuItemLabel)
+    menuLabel:setString(string)
+    menuLabel:getString(color3b)
+    menuLabel:getDisabledColor()--获取禁用项时将使用的颜色。
+    menuLabel:setDisabledColor()
+    menuLabel:getLabel()
+    menuLabel:setLabel(node)
+    menuLabel:activate()--Activate the item.
+    menuLabel:selected()--可以设置item处理选中状态
+    menuLabel:unselected()
+    menuLabel:setEnabled(boolean)--false时，就会显示setDisabledColor
+    menuLabel:initWithLabel(node,callback)
     --用节点创建
         local function OnClickMenu(tag, menuItemSender)
             cclog("tag = %d", tag)
@@ -21,18 +42,7 @@
         local mn = cc.Menu:create(item1)
         layer:addChild(mn)
 
-
---public function
-    mn = cc.Menu:create(Array)--Array是数组
-
-	mn:alignItemsVertically()--垂直方向
-	mn:alignItemsHorizontally()--水平
-	mn:alignItemsVerticallyWithPadding(100)--垂直排列间距
-	mn:alignItemsHorizontallyWithPadding(100)--水平
-	mn:alignItemsInColumns(3, 3, 3, 3, 3)--三列五行
-
-    mu:isEnabled()--判断是否开启
-    mu:setEnabled(false)--无法交互
+    
 
    
 --精灵与图片菜单

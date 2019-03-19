@@ -10,7 +10,7 @@
 --默认尺寸大小为窗口大小
 --设置layerColor混合模式https://blog.51cto.com/shahdza/1548560
     local layer = cc.Layer:create()
-    layer:ignoreAnchorPointForPosition(false)--设置锚点为(0.5,0.5)，默认锚点在(0,0),
+    layer:setIgnoreAnchorPointForPosition(false)--(setAnchorPoint对layer没用)设置锚点为(0.5,0.5)，默认锚点在(0,0),
 
     local layerColor = cc.LayerColor:create(cc.c3b(255, 255, 255),width,height)--cc.c4b(255, 255, 255,255)
     layerColor:changeWidth(width)--Change width in Points.

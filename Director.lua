@@ -11,8 +11,8 @@ director:getVisibleOrigin()--(Vec2)Returns visible origin coordinate of the Open
 director:getContentScaleFactor()--(float)Gets content scale factor.(获取表面像素大小)
 director:getFrameRate()--(float)Gets Frame Rate. (获取帧率)
 director:getTotalFrames()--(int)(总共已经渲染了多少帧)
-director:convertToGL(cc.p(10,10))--(Vec2)Converts a screen coordinate to an OpenGL coordinate
-director:convertToUI(cc.p(10,10))--(Vec2)Converts an OpenGL coordinate to a screen coordinate
+director:convertToGL(cc.p(10,10))--GL原点在左下角(Vec2)Converts a screen coordinate to an OpenGL coordinate
+director:convertToUI(cc.p(10,10))--UI原点在左上角(Vec2)Converts an OpenGL coordinate to a screen coordinate
 
 --设置后节点独立于场景之外单独绘制的，不会随着场景的切换而消失,即使父节点不在。
 director:setNotificationNode(node)--Sets the notification node(设置一个在主场景遍历后遍历的节点对象)
