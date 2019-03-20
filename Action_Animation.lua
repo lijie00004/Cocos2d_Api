@@ -1,54 +1,48 @@
 --old version
     --动画
-    --parent = image:getVirtualRenderer()--获取渲染节点,ImageView对渲染节点进行了一层封装
     local anim = Animation:create("anim/choujiang.ani", parentNode)
     anim:setFps(anim:getFps() * speed)
 
     local array = CCArray:create()
     array:addObject(anim)
-    array:addObject(CCCallFuncN:create(function))
+
+    parent = image:getVirtualRenderer()--获取渲染节点,ImageView对渲染节点进行了一层封装
     parent:runAction(CCSequence:create(array))
     or
     parent:runAction(anim)
 
 
-
     local armatureDataManager = CCArmatureDataManager:sharedArmatureDataManager()
-    armatureDataManager:addArmatureFileInfo("export/shouchong_daochu.ExportJson")
-    local energyAnim = CCArmature:create("shouchong_daochu")
-    energyAnim:setPosition(ccp(240, 180))--energyAnim is equivalent to node
-    energyAnim:getAnimation():playWithIndex(0)
-    energyAnim:getAnimation():setSpeedScale(self.speed * speed * 2)
-    node:addNode(energyAnim)--using addChild will give you an error
+    armatureDataManager:addArmatureFileInfo("export/shouchong_daochu.ExportJson")--"images/shengfu.csb"
+    local animation_1 = CCArmature:create("shouchong_daochu")
+    local animation_2 = CCArmature:create("shouchong_daochu")
+    animation_1:setPosition(ccp(240, 180))--energyAnim is equivalent to node
+    animation_1:getAnimation():setSpeedScale(self.speed * speed * 2)
+    node:addNode(energyAnim)--有时用addchild可以
 
-    local function finish()
+    animation_1:getAnimation():playWithIndex(0)
+    animation_1:getAnimation():play("sheng_2")--胜利光圈
+    animation_2:getAnimation():play("sheng")--胜利文字
+
+    
+
+    local function finish(sender)
         energyAnim:getAnimation():stop()
-        armature:removeFromParentAndCleanup(true)
+        animation_1:removeFromParentAndCleanup(true)
+        CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo("images/naruto/csb/shengfu.csb")
+        --可选
+        energyAnim = nil
+        layer:stopAllActions()
     end
     local array = CCArray:create()
     array:addObject(CCFadeTo:create(1,50))
     array:addObject(CCFadeTo:create(1,255))
     array:addObject(CCCallFuncN:create(finish))
-    energyAnim:runAction(CCRepeatForever:create(CCSequence:create(array)))
 
+    energyAnim:runAction(CCRepeatForever:create(CCSequence:create(array)))
     energyAnim:getAnimation():setMovementEventCallFunc(finish)--动画播放完后执行
 
-
-
-    armatureDataManager:addArmatureFileInfo("images/naruto/csb/shengfu.csb")
-    animation_1 = CCArmature:create("shengfu")
-    animation_2 = CCArmature:create("shengfu")
-    animation:setPosition(ccp(240,700))
-    self.layer:addChild(animation,-1)
-    animation_1:getAnimation():play("sheng_2")--胜利光圈
-    animation_2:getAnimation():play("sheng")--胜利文字
-
-    --清理
-    energyAnim:removeFromParentAndCleanup(true)
-    CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo("images/naruto/csb/shengfu.csb")
-    --可选
-    energyAnim = nil
-    layer:stopAllActions()
+    
 
 
 
@@ -95,20 +89,12 @@
     sprite:runAction(cc.FadeOut:create(5))--渐弱
 
 --组合动作
-	ac1 = cc.MoveTo:create(2,cc.p(size.width - 100, size.height - 100))
-	ac2 = cc.RotateTo:create(2, 40)
-
-	sprite:runAction(cc.Spawn:create(ac1,ac2))--同时执行
-	seq = cc.Sequence:create(ac1, ac2)--按顺序执行
-	sprite:runAction(cc.Repeat:create(seq,3))--重复执行3次
-    sprite:runAction(cc.RepeatForever:create(seq))--无限重复
-
+    cc.Repeat:create(seq,3)--重复执行3次
+    cc.RepeatForever:create(seq)--无限重复
+    cc.Spawn:create(ac1)
+    cc.Sequence:create(ac1)
 
 --动作速度控制
-	local ac1 = cc.MoveBy:create(2, cc.p(200, 0))
-    local ac2 = ac1:reverse()
-    local ac = cc.Sequence:create(ac1, ac2)
-
     sprite:runAction(cc.EaseIn:create(ac, 3))--以三倍速度由慢到快
     sprite:runAction(cc.EaseOut:create(ac, 3))--三倍速度由快到慢
     sprite:runAction(cc.EaseInOut:create(ac, 3))--三倍速度由慢到快再由快到慢
@@ -121,21 +107,12 @@
     sprite:runAction(cc.Speed:create(ac, (math.random() * 5)))--随机设置变换速度
 
 --函数调用(可以嵌套动作函数，和判断条件if来执行那个函数，尤其是重复循环)
-	local function CallBack1(pSender)--函数动作会和下个动作一起执行
-	end
-    local acf = cc.CallFunc:create(CallBack1)
-
-
-    local function CallBack3(pSender, table)--pSender是精灵本身，table是函数调用时传过来的
+    local function CallBack(pSender, table)--pSender是精灵本身，table是函数调用时传过来的
     	local sp = pSender
 	    sp:runAction(cc.TintBy:create(table[1], table[2], table[3], table[4]))
 	end
-	function MyActionScene:OnCallFuncND()
-	    local ac1 = cc.MoveBy:create(2, cc.p(100, 100))
-	    local ac2 = ac1:reverse()
-	    local acf = cc.CallFunc:create(CallBack3, { 1, 255, 0, 255 })
-	    sprite:runAction(cc.Sequence:create(ac1, acf, ac2))
-	end
+    local acf = cc.CallFunc:create(CallBack, { 1, 255, 0, 255 })
+    sprite:runAction(cc.Sequence:create(ac1, acf, ac2))
 
 --帧动画
 	local spriteFrame  = cc.SpriteFrameCache:getInstance()
@@ -159,11 +136,10 @@
     local action = cc.Animate:create(animation)
     sprite:runAction(cc.RepeatForever:create(action))
 
-
     sprite:stopAllActions()--停止动画
 
 
-
+    --消耗动画
     node:runAction(CCScaleTo:create(0.4,1.5))--amplification
     local lb_num = Label:create()
     lb_num:setFontName(LFont())

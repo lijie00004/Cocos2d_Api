@@ -1,3 +1,7 @@
+--old version
+SimpleAudioEngine:sharedEngine():playEffect("music/guanbi.mp3")
+
+--new version
 -- ios 背景音乐采用AIFC格式，音效采用CAFF格式
 -- Android 背景音乐采用MP3格式，音效采用OGG或WAV格式
 
@@ -7,12 +11,8 @@ AuidoEngine.preloadMusic("sound/Synth.mp3")--预加载音乐
 AuidoEngine.preloadEffect("sound/Blip.wav")--预加载音效
 AuidoEngine.unloadEffect("sound/Blip.wav")--清除音效缓存，没有清理背景音乐缓存函数
 AudioEngine.playEffect("sound/Blip.wav")
-
 AuidoEngine.playMusic("sound/Jazz.mp3",true)--true循环播放，默认false
 AuidoEngine.stopMusic()--停止播放
 AuidoEngine.pauseMusic()--暂停播放
 AuidoEngine.resumeMusic()--继续播放
 AuidoEngine.isMusicPlaying()--判断音乐是否播放
-
-
-
