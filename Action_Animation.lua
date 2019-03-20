@@ -49,6 +49,19 @@
     --可选
     energyAnim = nil
     layer:stopAllActions()
+
+
+
+
+
+    action:reverse()--(action)
+    action:clone()--(action)
+    action:getTarget()--(node)
+    action:setTarget(target)--仅在单个动作有用，并且在runaction之前使用
+    action:setTag(tag)--设置标识
+    action:getTag()
+    action:getDuration()--返回持续时间
+    action:setDuration(float)--设置持续时间
 --瞬间动作
 	local p = cc.p(math.random() * size.width, math.random() * size.height)
 	sprite:runAction(cc.Place:create(p))--移动到指定位置
@@ -56,14 +69,7 @@
 	sprite:runAction(cc.FlipY:create(true))
 	sprite:runAction(cc.Hide:create())
 	sprite:runAction(cc.Show:create())
-	sprite:runAction(cc.ToggleVisibility:create())--将对象显示/隐藏切换
-
-    acReverse = action:reverse()--相反动作
-    acClone = action:clone()--复制动作
-    acDone = action:isDone()--如果动作结束，会返回true。在Follow, RepeatForever, Speed, Repeat, ActionInterval, and ActionInstant重定义了
-    target = action:getTarget()--返回执行的对象
-    action:setTarget(target)--在执行过程中更换对象
-    action:setTag(tag)--设置标识
+	sprite:runAction(cc.ToggleVisibility:create())--将对象显示/隐藏切换  
 --间隔动作
 	sprite:runAction(cc.MoveTo:create(2,cc.p(-50, -50)))--移动
     sprite:runAction(cc.MoveBy:create(2,cc.p(-50, -50)))
@@ -115,9 +121,7 @@
     sprite:runAction(cc.Speed:create(ac, (math.random() * 5)))--随机设置变换速度
 
 --函数调用(可以嵌套动作函数，和判断条件if来执行那个函数，尤其是重复循环)
-	local function CallBack1()--默认传pSender，必须用pSender，否则动作不执行
-                                --函数动作会和下个动作一起执行
-	    sprite:runAction(cc.TintBy:create(0.5, 255, 0, 255))
+	local function CallBack1(pSender)--函数动作会和下个动作一起执行
 	end
     local acf = cc.CallFunc:create(CallBack1)
 

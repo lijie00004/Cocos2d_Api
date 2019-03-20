@@ -23,62 +23,72 @@
 
 
 --cocos2d-3
-    -- 创建ImageView对象
-        local imageView = ccui.ImageView:create("HelloWorld.png")
-        imageView:setPosition(size.width / 2, size.height / 2)
-        layer:addChild(imageView)
+    local sprite = cc.Sprite:create()--create(filePath) create(filePath,cc.rect(20,20,100,100))
+    
+    local cache = cc.Director:getInstance():getTextureCache():addImage(".png")--纹理缓存
+    local sprite_texture = cc.Sprite:createWithTexture(cache)--createWithTexture(filePath,cc.rect(20,20,100,100))
+    
+    local frameCache = cc.Director:getInstance():addSpriteFrames("SpirteSheet.plist")--精灵帧缓存
+    local sprite_frame = cc.Sprite:createWithSpriteFrameName(".png")--参数是精灵帧名字
+    sprite_frame:setSpriteFrame(".png")
+    --不使用要移除精灵帧
+    cc.SpriteFrameCache:getInstance():removeSpriteFrameByName(name)--指定精灵帧名移除
+    cc.SpriteFrameCache:getInstance():removeSpriteFrames()--移除精灵缓存
+    cc.SpriteFrameCache:getInstance():removeSpriteFramesFromFile(plist)--指定文件移除精灵帧
+    cc.SpriteFrameCache:getInstance():removeUnusedSpriteFrames()--移除没有使用精灵帧
 
-        imageView:setScale9Enabled(true)--四个角不变，截取的范围放大或缩小
-        imageView:setCapInsets(cc.rect(10,10,10,10))
-        imageView:setContentSize(cc.size(200, 100))
+    --主要用于精灵动画
+    local frameCache = cc.Director:getInstance():addSpriteFrames("SpirteSheet.plist")
+    local frame = cc.Director:getInstance():getSpriteFrameByName(".png")--创建精灵帧对象
+    local sprite_frame = cc.Sprite:createWithSpriteFrame(frame)
+    sprite_frame:setDisplayFrame(frame)
 
-        imageView:ignoreContentAdaptWithSize(false)
-        imageView:setContentSize(cc.size(200, 100))
+    sprite:setTexture(".png")--update texture,纹理的矩形没有改变。
+    sprite:getTexture()
+    sprite:setTextureRect(cc.rect(10,10,50,50))
+    sprite:getCenterRect()
+    sprite:setDisplayFrameWithAnimationName(string_animation)
+    sprite:setFlippedX(boolean)--翻转沿X轴
+    sprite:setFlippedY(boolean)
+    sprite:setStretchEnabled(boolean)--(default true) 控制图片是否填满节点大小setContentSize
+    sprite:isStrechEnabled()
+    sprite:reorderChild()--子节点重新排序
 
-        imageView:setTextureRect(cc.rect(0,0,20,20))--尺寸还是原先尺寸，截取范围放大或缩小
+    sprite:initWithTexture(cache)
+    sprite:initWithSpriteFrame(frame)
+    sprite:initWithSpriteFrameName(string)
+    sprite:initWithFile(string)--参数个数为1，清空所有,比如翻转
 
-
-
-    --创建sprite
-        --九宫格
-        bg_3 = cc.Scale9Sprite:create("bg/bg_3.png")
-        bg_3:setScale9Enabled(true)--默认开启，所以不用写
-        bg_3:setCapInsets(cc.rect(25,25,3,4))--自动识别大小，可以不用写
-        bg_3:setContentSize(cc.size(265,46))
-
-        sprite:setContentSize(cc.size(423,370))--这是用sprite创建的精灵，直接设置大小，不用ignoreContentAdaptWithSize
-
-        local sprite = cc.Sprite:create("HelloWorld.png")
-                    --cc.Sprite:create(filename,cc.rect(x,y,width,height))--指定图片和裁剪的矩形区域来创建
-                    --cc.Sprite:createWithTexture(texture)--指定纹理来创建
-                    --cc.Sprite:createWithTexture(texture，rect,rotated=false)--指定纹理和裁剪的矩形区域来创建,第三个参数表示是否旋转，默认不旋转
-
-    --纹理图集(Texture Atlas)把许多小的精灵图片组合到一张大图中
-        --制作纹理图集工具网站：https://zwopple.com https://www.codeandweb.com
-            local mountain1 = cc.Sprite:create("SpirteSheet.png",cc.rect(2,391, 934, 388))
-            --裁剪范围参考.plist文件中的<string>[{0,16},{934,388}]</string>,第一个参数表示图片位置，第二个位置表示图片大小
-        --也可以用纹理Texture2D对象
-            local cache = cc.Director:getInstance():getTextureCache():addImage("SpirteSheet.png")
-            local hero1 = cc.Sprite:create()
-            hero1:setTexture(cache)
-            hero1:setTextureRect(cc.rect(2,1706,391,327))
+    sprite:init()--参数个数为0，清空所有，包括图片
 
 
+-- 创建ImageView对象
+    local imageView = ccui.ImageView:create("HelloWorld.png")
+    imageView:loadTexture(filePath)
+    imageView:setTextureRect(cc.rect(0,0,20,20))
+    imageView:getVirtualRendererSize()--获取的是原图大小
 
-    --精灵帧缓存(SpriteFrameCache)
+    imageView:setScale9Enabled(true)--default false
+    imageView:setCapInsets(cc.rect(10,10,10,10))
+    imageView:setContentSize(cc.size(200, 100))
 
-        cc.SpriteFrameCache:getInstance():addSpriteFrames("SpirteSheet.plist")--缓存文件
-        --方法一
-        local mountain1 = cc.Sprite:createWithSpriteFrameName("mountain1.png")
-        --方法二，主要用于精灵动画
-        local heroSpriteFrame = cc.SpriteFrameCache:getInstance():getSpriteFrameByName("hero1.png")
-        local hero1 = cc.Sprite:createWithSpriteFrame(heroSpriteFrame)
+    imageView:ignoreContentAdaptWithSize(false)--true将忽略用户定义的内容大小
+    imageView:setContentSize(cc.size(200, 100))
 
-        --移除精灵帧
-        cc.SpriteFrameCache:getInstance():removeSpriteFrameByName(name)--指定精灵帧名移除
-        cc.SpriteFrameCache:getInstance():removeSpriteFrames()--移除精灵缓存
-        cc.SpriteFrameCache:getInstance():removeSpriteFramesFromFile(plist)--指定文件移除精灵帧
-        cc.SpriteFrameCache:getInstance():removeUnusedSpriteFrames()--移除没有使用精灵帧
+
+--创建sprite
+    --九宫格
+    local sprite = cc.Scale9Sprite:create("bg/bg_3.png")--create(cc.rect(0,0,100,100),"bg/character.png")
+                                --createWithSpriteFrame
+                                --createWithSpriteFrameName
+    sprite:setScale9Enabled(true)--默认开启，所以不用写
+    sprite:setCapInsets(cc.rect(25,25,3,4))--自动识别大小，可以不用写
+    sprite:setContentSize(cc.size(265,46))
+
+    sprite:getSprite()--(sprite)Get the original no 9-sliced sprite.
+    sprite:getOriginalSize()--(size)Query the sprite's original size
+
+    sprite:setState(int)--0显示正常图片，1显示变灰图片
 
 
     -- 如果图片比较大，如背景图，可以考虑异步加载
