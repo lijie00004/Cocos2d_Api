@@ -1,6 +1,5 @@
 local director = cc.Director:getInstance()--Gets current running Scene
 
-director:isDisplayStats()--(boolean)Whether or not displaying the FPS on the bottom-left corner of the screen
 director:isPaused()--(boolean)Whether or not the Director is paused.
 director:getSecondsPerFrame()--(count)GL calls OpenGL绘制（渲染）的次数，即每一帧中OpenGL指令调用的次数,每秒执行帧数
 director:getAnimationInterval()--(FPS)Gets the FPS value(获取每帧的间隔时间)

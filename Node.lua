@@ -16,7 +16,7 @@ node:getRotation()
 node:getRotationSkewX()
 node:getChildByTag(int)
 node:getChildByName(string)
-node:getChildren()--Returns the amount of children.
+node:getChildren()
 node:getChildrenCount()
 node:getParent()--(Node)
 node:getTag()
@@ -27,16 +27,13 @@ node:getScene()--Returns the Scene that contains the Node.
 node:getBoundingBox()--(table){x = ,y = ,width = , height = }图片左下到父节点锚点的距离，图片大小
 node:getActionByTag()--(action)Gets an action from the running action list by its tag.
 node:getOpacity()
-node:isCascadeOpacityEnabled()
 node:getColor()--(Color3B){r = ,b = , g = }
 node:getDisplayedColor()--(Color3B){r = ,b = , g = }
-node:isCascadeColorEnabled()
-node:isOpacityModifyRGB()
 
 node:setLocalZOrder(int)--LocalZOrder is the 'key' used to sort the node relative to its siblings.
 node:setScaleX(float)--setScale(0.7,1)
 node:setPosition(cc.p(100,100))--or (100,100)setPositionX
-node:setPositionNormalized(cc.p(0.1,0.1))--(cc.p(1,1)表示节点的锚点在父节点右上角)Sets the position (x,y) using values between 0 and 1
+node:setPositionNormalized(cc.p(0.1,0.1))--(cc.p(1,1)表示节点的锚点在父节点右上角)
 node:setSkewX(float)--(setSkewY)Changes the X skew angle of the node in degrees.
 node:setAnchorPoint(Vec2)-- or (0,0)
 node:setContentSize(Size)-- or (100,100) ignoreContentAdaptWithSize(flase)
@@ -66,44 +63,10 @@ node:stopAllActionsByTag(tag)--Removes all actions from the running action list 
 node:resume()--(lua没用)Resumes all scheduled selectors, actions and event listeners.
 node:pause()--(lua没用)Pauses all scheduled selectors, actions and event listeners.
 node:setOpacity(opacity)
-node:updateDisplayedOpacity(opacity)--忽视setCascadeOpacityEnabled(true),Update the displayed opacity of node with it's parent opacity;.
+node:updateDisplayedOpacity(opacity)--忽视setCascadeOpacityEnabled(true),Update
 node:setCascadeOpacityEnabled(boolen)--开启后父节点的透明度会影响子节点透明度
 node:setColor(cc.c3b(255,255,0))
-node:updateDisplayedColor(cc.c3b(255,255,0))
-node:setCascadeColorEnabled(boolen)
-node:setOpacityModifyRGB(boolen)--如果您希望不透明度影响颜色属性，则将其设置为true。
-
-
-
---暂停
-Layer:pause()
-if (schedulerId ~= nil) then
-scheduler:unscheduleScriptEntry(schedulerId)
-end
-local pChildren = Layer:getChildren()
-for i = 1, #pChildren, 1 do
-local child = pChildren[i]
-child:pause()
-end
-
---继续
-Layer:resume()
-scheduler:scheduleScriptFunc(shootBullet, 0.2, false)
-local pChildren = Layer:getChildren()
-for i = 1, #pChildren, 1 do
-local child = pChildren[i]
-child:resume()
-end
-
-
---定时器
-    --当Node被移除出场景或者其他情况下，调定时器将会被取消
-	layer:scheduleUpdateWithPriorityLua(update, 0)--update表示回调函数，0表示优先级
-	layer:unscheduleUpdate()--停止调度
-
-    --当Node被移除出场景或者其他情况下，调定时器依旧在
-    --每0.2秒调用shootBullet函数,false表示无限次
-    schedulerId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(callback, 0.2, false)--cc.Director:getInstance():getScheduler()全局定时器
-    cc.Director:getInstance():getScheduler():unscheduleScriptEntry(schedulerId)
-
-    cc.Director:getInstance():getScheduler():setTimeScale(1.0)--动作、动画执行速度
+node:updateDisplayedColor(cc.c3b(255,255,0))--更新节点颜色及其父颜色
+node:setCascadeColorEnabled(boolen)--(true)父节点颜色会影响子节点颜色
+node:setOpacityModifyRGB(boolen)--(true)透明度不会影响颜色属性
+node:retain()

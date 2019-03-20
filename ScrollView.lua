@@ -17,43 +17,41 @@
     scrollView:getInnerContainer():setPosition(ccp(0,0))--设置scrollview的子容器位置
 
 --new version
-    local scrollView = ScrollView:create()
-    scrollView:setDirection(SCROLLVIEW_DIR_HORIZONTAL)
+    local scrollView = cc.ScrollView:create()
     scrollView:getDirection()--(direction)
     scrollView:getInnerContainer()--(Layout)Get inner container of scrollview.Inner container is a child of scrollview
     scrollView:getInnerContainer():getPostion()--获取当前坐标
     scrollView:getInnerContainerSize()--(size)
     scrollView:getInnerContainerPosition()--(Vec2)
-    scrollView:setInnerContainerPosition(Vec2)
     scrollView:getChildren()--(array)
     scrollView:getChildrenCount()--(int)
     scrollView:getChildByTag(tag)--(child)
+    scrollView:setInnerContainerPosition(Vec2)
+    scrollView:setDirection(SCROLLVIEW_DIR_HORIZONTAL)
     scrollView:setBounceEnabled(boolean)--弹回(bounce)效果
     scrollView:isBounceEnabled()--boolean
     scrollView:setInertiaScrollEnabled(boolean)--滚动惯性
-    scrollView:isInertiaScrollEnabled()--boolean
     scrollView:setTouchTotalTimeThreshold(float)--Set the touch total time threshold
     scrollView:getTouchTotalTimeThreshold(float)--Get the touch total time threshold
 
 
     --scroll bar position and size and color and opacity
+    scrollView:getScrollBarPositionFromCornerForVertical()--Vec2
+    scrollView:getScrollBarPositionFromCornerForHorizontal()--Vec2
+    scrollView:getScrollBarWidth()
+    scrollView:getScrollBarColor()
+    scrollView:getScrollBarOpacity()
+    scrollView:getScrollBarAutoHideTime()--float
+
     scrollView:setScrollBarPositionFromCorner(Vec2)--Set the scroll bar positions from the left-bottom corner (horizontal) and right-top corner (vertical)(设置滚动条水平位置和垂直位置)
     scrollView:setScrollBarPositionFromCornerForVertical(Vec2)--Set the vertical scroll bar position from right-top corner
-    scrollView:getScrollBarPositionFromCornerForVertical()--Vec2
     scrollView:setScrollBarPositionFromCornerForHorizontal(Vec2)--Set the horizontal scroll bar position from left-bottom corner
-    scrollView:getScrollBarPositionFromCornerForHorizontal()--Vec2
     scrollView:setScrollBarWidth(width)
-    scrollView:getScrollBarWidth()
     scrollView:setScrollBarColor(color)
-    scrollView:getScrollBarColor()
     scrollView:setScrollBarOpacity(opacity)
-    scrollView:getScrollBarOpacity()
     scrollView:setScrollBarAutoHideEnabled(boolean)--Set scroll bar auto hide state
-    scrollView:isScrollBarAutoHideEnabled()--boolean
     scrollView:setScrollBarAutoHideTime(float)--Set scroll bar auto hide time
-    scrollView:getScrollBarAutoHideTime()--float
-    scrollView:setScrollBarEnabled(boolean)--启用滚动条
-    scrollView:isScrollBarEnabled()--boolean
+    --scrollView:setScrollBarEnabled(boolean)--启用滚动条
 
 
 
@@ -74,7 +72,7 @@
     scrollView:jumpToPercentBothDirection(float)--float(0~100 or Vec2)
     scrollView:setInnerContainerSize(Size)
 
-    scrollView:addEventListenerScrollView(target,selector)--Add callback function which will be called when scrollview event triggered
-    scrollView:addEventListener(callback)--Add callback function which will be called when scrollview event triggered
-    onTouchBegan(Touch,Event)
+    -- scrollView:addEventListenerScrollView(target,selector)--Add callback function which will be called when scrollview event triggered
+    -- scrollView:addEventListener(callback)--Add callback function which will be called when scrollview event triggered
+    -- onTouchBegan(Touch,Event)
 

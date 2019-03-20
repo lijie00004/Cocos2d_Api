@@ -3,7 +3,7 @@
     local uiLayer = TouchGroup:create()
     local colorBg = CCLayerColor:create(ccc4(0, 0, 0, 180), 480, 854)
     local layer = CCLayer:create()
-    layer:retain()
+
 
 
 --new version

@@ -1,3 +1,6 @@
+	os.time()--从1970.1.1.08:00到现在的秒数
+	os.date()--日期
+
 	math.floor(9.9) = 9--向下取整
 	math.ceil(9.9) = 10--向上取整
 	math.max(...)
@@ -21,10 +24,6 @@ local string = tostring(var)--Converts a Boolean or numeric type to a string typ
 local num = tonumber("AF",[16])--175
 local num = tonumber("10")--10
 
-local hour = math.floor(self.goldRecruitInterval / 3600)
-local minute = math.floor((self.goldRecruitInterval %3600) /60)
-local second = math.floor(self.goldRecruitInterval % 60)
-
 print(20 and 100)--100
 print(100 and true)--true
 print(nil and 20)--nil
@@ -41,6 +40,7 @@ returnFunction = function(width, height)--anonymous function(匿名函数)
 	return area
 end
 
+table[1] = nil--#table不会改变，位置1的坑还在
 --排序
 table.sort(tempTable,function(a, b) return (a < b) end)--排序从小到大
 --当比较函数没有写的时候，table.sort默认按照lua里面的排序规则升序排序
@@ -65,8 +65,3 @@ table.sort(tempTable,sortFunc)
 --(如果变量被赋值为nil,垃圾收集器会删除该变量,释放它的内存)
 --Nested function(函数嵌套)
 --Returns the function(返回函数)
-
---os.time()--从1970.1.1.08:00到现在的秒数
---os.date()--日期
-
---table[1] = nil--#table不会改变，位置1的坑还在

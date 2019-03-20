@@ -18,11 +18,43 @@ Ref-->Node-->Scene-->TransitionScene
     local point1 = node1:convertToWorldSpace(cc.p(posX,posY))----将模型坐标转换为世界坐标
     local point3 = node1:convertToWorldSpaceAR(cc.p(posX,posY))--相对锚点将模型坐标转换为世界坐标
 
+--暂停
+Layer:pause()
+if (schedulerId ~= nil) then
+scheduler:unscheduleScriptEntry(schedulerId)
+end
+local pChildren = Layer:getChildren()
+for i = 1, #pChildren, 1 do
+	local child = pChildren[i]
+	child:pause()
+end
+
+--继续
+Layer:resume()
+scheduler:scheduleScriptFunc(shootBullet, 0.2, false)
+local pChildren = Layer:getChildren()
+for i = 1, #pChildren, 1 do
+local child = pChildren[i]
+child:resume()
+end
+
+
+--定时器
+--当Node被移除出场景或者其他情况下，调定时器将会被取消
+layer:scheduleUpdateWithPriorityLua(update, 0)--update表示回调函数，0表示优先级
+layer:unscheduleUpdate()--停止调度
+
+--当Node被移除出场景或者其他情况下，调定时器依旧在
+--每0.2秒调用shootBullet函数,false表示无限次
+schedulerId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(callback, 0.2, false)--cc.Director:getInstance():getScheduler()全局定时器
+cc.Director:getInstance():getScheduler():unscheduleScriptEntry(schedulerId)
+
+cc.Director:getInstance():getScheduler():setTimeScale(1.0)--动作、动画执行速度
 
 --cocos命令指令
     cocos new HelloLua -p com.work6 -l lua -d D:/cocos
 --old version
-getCastChild(self.mainLayout,0,"ImageView"):setScaleY(0.64)--cocos2d
+getCastChild(layout,0,"ImageView"):setScaleY(0.64)--cocos2d
 
 --new version
 UIWidget--所有UI控件的基类

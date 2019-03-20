@@ -1,13 +1,12 @@
---cocos2d-x-3
-    mn = cc.Menu:create()--or create(menuItem)
-    mn:addChild(menuItem,localZOrder,tag)
-    mn:alignItemsVertically()--垂直方向
-    mn:alignItemsHorizontally()--水平
-    mn:alignItemsVerticallyWithPadding(100)--垂直排列间距
-    mn:alignItemsHorizontallyWithPadding(100)--水平
-    mn:alignItemsInColumns(3, 3, 3, 3, 3)--三列五行
-    mn:alignItemsInRows(3, 3, 3, 3, 3)--五列三行
-    mu:setEnabled(false)--无法交互
+mn = cc.Menu:create()--or create(menuItem)
+mn:addChild(menuItem,localZOrder,tag)
+mn:alignItemsVertically()--垂直方向
+mn:alignItemsHorizontally()--水平
+mn:alignItemsVerticallyWithPadding(100)--垂直排列间距
+mn:alignItemsHorizontallyWithPadding(100)--水平
+mn:alignItemsInColumns(3, 3, 3, 3, 3)--三列五行
+mn:alignItemsInRows(3, 3, 3, 3, 3)--五列三行
+mu:setEnabled(false)--无法交互
 --文本菜单
     local menuLabel = cc.MenuItemLabel:create(menuItemLabel)
     menuLabel:setString(string)
@@ -21,29 +20,12 @@
     menuLabel:unselected()
     menuLabel:setEnabled(boolean)--false时，就会显示setDisabledColor
     menuLabel:initWithLabel(node,callback)
-    --用节点创建
-        local function OnClickMenu(tag, menuItemSender)
-            cclog("tag = %d", tag)
-            actionFlag = menuItemSender:getTag()
-        end
-        local pItmLabel1 = cc.Label:createWithBMFont("fonts/fnt8.fnt", "Explosion")
-        local pItmMenu1 = cc.MenuItemLabel:create(pItmLabel1)
-        pItmMenu1:setTag(tag)
-        pItmMenu1:registerScriptTapHandler(OnClickMenu)
-
-    --用string创建
-        cc.MenuItemFont:setFontName("Times New Roman")
-        cc.MenuItemFont:setFontSize(86)
-        local item1 = cc.MenuItemFont:create("Start")
-        local function menuItem1Callback(sender)
-            cclog("Touch Start Menu Item.")
-        end
-        item1:registerScriptTapHandler(menuItem1Callback)
-        local mn = cc.Menu:create(item1)
-        layer:addChild(mn)
-
-    
-
+    local function callback(tag, menuItemSender)
+        --tag为menuItem设置的标签 ，menuItem为相应对象
+    end
+    local function callback(sender)
+    end
+    menuItem:registerScriptTapHandler(callback)
    
 --精灵与图片菜单
     local sprite = cc.Sprite:create("blue_tiles.png")
