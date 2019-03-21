@@ -29,8 +29,8 @@
 		    return false--if return false, onTouchMoved, onTouchEnded, onTouchCancelled will never called.
 		end
 		local listener1 = cc.EventListenerTouchOneByOne:create()
-		listener1:setSwallowTouches(true)--是否吞没事件,default true
-		listener1:registerScriptHandler(touchBegan,cc.Handler.EVENT_TOUCH_BEGAN )
+		listener1:setSwallowTouches(true)--是否吞没事件,default false
+		listener1:registerScriptHandler(touchBegan,cc.Handler.EVENT_TOUCH_BEGAN )--return true时吞没
 									--touchMoved,cc.Handler.EVENT_TOUCH_MOVED
 									--touchEnded,cc.Handler.EVENT_TOUCH_ENDED
 		local listener2 = listener1:clone()							

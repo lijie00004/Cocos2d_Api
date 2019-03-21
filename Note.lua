@@ -57,6 +57,7 @@ cc.Director:getInstance():getScheduler():setTimeScale(1.0)--动作、动画执�
 getCastChild(layout,0,"ImageView"):setScaleY(0.64)--cocos2d
 
 --new version
+invalid 'cobj'--node值相当于一个弱引用,手动增加引用retain()
 UIWidget--所有UI控件的基类
 addChild--添加UIWidget类型的节点
 addRenderer--添加CCNode类型的节点
