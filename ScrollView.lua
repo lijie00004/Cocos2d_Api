@@ -4,7 +4,7 @@
     scrollView:setPosition(ccp(50,734))
     scrollView:setEnabled(true)
     scrollView:setBounceEnabled(true)
-    scrollView:setDirection(SCROLLVIEW_DIR_HORIZONTAL)--SCROLLVIEW_DIR_VERTICAL
+    scrollView:setDirection(SCROLLVIEW_DIR_HORIZONTAL)--SCROLLVIEW_DIR_VERTICAL--ccui.ScrollViewDir.vertical
     uiLayer:addWidget(scrollView)
     local innerWidth = self.scrollViewRecruit:getSize().width
     local innerHeight = self.scrollViewRecruit:getSize().height
@@ -17,6 +17,9 @@
     scrollView:getInnerContainer():setPosition(ccp(0,0))--设置scrollview的子容器位置
 
 --new version
+    scrollview:addChild(layout)---一个layout 为一个 page内容
+    local innerWidth=scrollview:getContentSize().width
+    local innerHeight=scrollview:getContentSize().height
     local scrollView = cc.ScrollView:create()
     scrollView:getDirection()--(direction)
     scrollView:getInnerContainer()--(Layout)Get inner container of scrollview.Inner container is a child of scrollview
@@ -28,11 +31,14 @@
     scrollView:getChildByTag(tag)--(child)
     scrollView:setInnerContainerPosition(Vec2)
     scrollView:setDirection(SCROLLVIEW_DIR_HORIZONTAL)
-    scrollView:setBounceEnabled(boolean)--弹回(bounce)效果
     scrollView:isBounceEnabled()--boolean
     scrollView:setInertiaScrollEnabled(boolean)--滚动惯性
     scrollView:setTouchTotalTimeThreshold(float)--Set the touch total time threshold
     scrollView:getTouchTotalTimeThreshold(float)--Get the touch total time threshold
+
+    scrollview:setTouchEnabled(true)
+    scrollview:setBounceEnabled(true)
+    scrollview:setContentSize(cc.size(200,100))
 
 
     --scroll bar position and size and color and opacity
@@ -71,6 +77,15 @@
     scrollView:jumpToPercentHorizontal(float)--float(0~100)
     scrollView:jumpToPercentBothDirection(float)--float(0~100 or Vec2)
     scrollView:setInnerContainerSize(Size)
+
+    local function scrollviewEvent(sender,eventType)
+        if eventType==ccui.ScrollviewEventType.scrollToBottom then
+           print("1111111111111")
+        elseif eventType==ccui.ScrollviewEventType.scrollToTop then
+          print("2222222222")
+        end
+    end
+    scrollview:addTouchEventListener(scrollviewEvent)
 
     -- scrollView:addEventListenerScrollView(target,selector)--Add callback function which will be called when scrollview event triggered
     -- scrollView:addEventListener(callback)--Add callback function which will be called when scrollview event triggered

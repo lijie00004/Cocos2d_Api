@@ -1,9 +1,9 @@
 --registerScriptHandler, 触屏 场景 和层的进入退出
 	--对象为layer
-		local function onNodeEvent(event)--event包括exit enter 
-		    if event == "exit" then
-		    end
-		end
+	local function onNodeEvent(event)--event包括exit enter 
+	    if event == "exit" then
+	    end
+	end
 	layer:registerScriptHandler(onNodeEvent)
 	scene:registerScriptHandler(function(event)
 	    if event == "enter" then--进入场景时触发
