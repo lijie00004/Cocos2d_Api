@@ -16,9 +16,9 @@
     armatureDataManager:addArmatureFileInfo("export/shouchong_daochu.ExportJson")--"images/shengfu.csb"
     local animation_1 = CCArmature:create("shouchong_daochu")
     local animation_2 = CCArmature:create("shouchong_daochu")
-    animation_1:setPosition(ccp(240, 180))--energyAnim is equivalent to node
+    animation_1:setPosition(ccp(240, 180))--animation_1 is equivalent to node
     animation_1:getAnimation():setSpeedScale(self.speed * speed * 2)
-    node:addNode(energyAnim)--有时用addchild可以
+    node:addNode(animation_1)--有时用addchild可以
 
     animation_1:getAnimation():playWithIndex(0)
     animation_1:getAnimation():play("sheng_2")--胜利光圈
@@ -27,16 +27,16 @@
     
 
     local function finish(sender)
-        energyAnim:getAnimation():stop()
+        animation_1:getAnimation():stop()
         animation_1:removeFromParentAndCleanup(true)
         CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo("images/naruto/csb/shengfu.csb")
         --可选
-        energyAnim = nil
+        animation_1 = nil
         layer:stopAllActions()
     end
     local array = CCArray:create()
     array:addObject(CCFadeTo:create(1,50))
-    array:addObject(CCFadeTo:create(1,255))
+    array:addObject(CCDelayTime:create(0.05))
     array:addObject(CCCallFuncN:create(finish))
 
     energyAnim:runAction(CCRepeatForever:create(CCSequence:create(array)))
@@ -107,7 +107,7 @@
 
     action = cc.Speed:create(cc.RotateBy:create(3,180),1)
     action:setSpeed(5)--(getSpeed)
-    action:setInnerAction(5)--替换内部动作(getInnerAction)
+    action:setInnerAction(action)--替换内部动作(getInnerAction)
     action:clone()
     action:reverse()
     action:startWithTarget(node)
@@ -123,8 +123,8 @@
 	end
     local acf = cc.CallFunc:create(CallBack, { 1, 255, 0, 255 })
 --帧动画
-	local spriteFrame  = cc.SpriteFrameCache:getInstance()
-    spriteFrame:addSpriteFrames("run.plist")
+	local spriteSingleton  = cc.SpriteFrameCache:getInstance()--处理sprite帧加载的单例
+    spriteSingleton:addSpriteFrames("run.plist")
 
     local sprite = cc.Sprite:createWithSpriteFrameName("h1.png")
     sprite:setPosition(cc.p(size.width/2, size.height/2))
@@ -134,7 +134,7 @@
     for i=1,4 do
         local frameName = string.format("h%d.png",i)
         cclog("frameName = %s",frameName)
-        local spriteFrame = spriteFrame:getSpriteFrameByName(frameName)
+        local spriteFrame = spriteSingleton:getSpriteFrameByName(frameName)
         animation:addSpriteFrame(spriteFrame)
     end
 

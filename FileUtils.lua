@@ -1,3 +1,6 @@
+--old version
+CCUserDefault:sharedUserDefault():setBoolForKey("MusicSwitch",true)
+--new vestion
 --FileUtils
 local sharedFileUtils = cc.FileUtils:getInstance()--获取实例
 --获取文件路径fullPathForFilename = D:/HelloLua/HelloLua/res/text.txt

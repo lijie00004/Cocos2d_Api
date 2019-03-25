@@ -20,12 +20,12 @@ local function scrollOffsetBtn(sender,eventType)
 end
 local btn = Button:create()
 btn:loadTextures("images/common_3/jiantou-1.png","images/common_3/jiantou-1.png")
-btn:setTouchEnabled(true)
 btn:setPressedActionEnabled(true)
 uiLayer:addWidget(btn)
 btn:addTouchEventListener(scrollOffsetBtn)
 
-btn:setEnabled(false)--设置成false，无法响应任何触发事件
+btn:setEnabled(false)--子控件都不响应触摸
+btn:setTouchEnabled(false)--
 
 --cocos2d-x-3
 btn:setBright(false)--先设置后才能显示禁止图片

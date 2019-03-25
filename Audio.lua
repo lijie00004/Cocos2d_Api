@@ -1,5 +1,7 @@
 --old version
 SimpleAudioEngine:sharedEngine():playEffect("music/guanbi.mp3")
+SimpleAudioEngine:sharedEngine():setBackgroundMusicVolume(0.3)
+SimpleAudioEngine:sharedEngine():setEffectsVolume(1)
 
 --new version
 -- ios 背景音乐采用AIFC格式，音效采用CAFF格式
