@@ -1,4 +1,4 @@
-local director = cc.Director:getInstance()--Gets current running Scene
+local director = cc.Director:getInstance()--Returns a shared instance of the director
 
 director:isPaused()--(boolean)Whether or not the Director is paused.
 director:getSecondsPerFrame()--(count)GL calls OpenGL绘制（渲染）的次数，即每一帧中OpenGL指令调用的次数,每秒执行帧数
@@ -9,7 +9,6 @@ director:getVisibleSize()--(Size)Returns visible size of the OpenGL view in poin
 director:getVisibleOrigin()--(Vec2)Returns visible origin coordinate of the OpenGL view in points(获取可视区域的原点坐标，这在处理相对位置的时候非常有用，确保节点在不同分辨率下的位置一致
 director:getContentScaleFactor()--(float)Gets content scale factor.(获取表面像素大小)
 director:getFrameRate()--(float)Gets Frame Rate. (获取帧率)
-director:getTotalFrames()--(int)(总共已经渲染了多少帧)
 director:convertToGL(cc.p(10,10))--GL原点在左下角(Vec2)Converts a screen coordinate to an OpenGL coordinate
 director:convertToUI(cc.p(10,10))--UI原点在左上角(Vec2)Converts an OpenGL coordinate to a screen coordinate
 

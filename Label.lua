@@ -14,6 +14,7 @@
 	label:setTextVerticalAlignment(kCCVerticalTextAlignmentCenter)--设置文本垂直对齐方式--垂直文本对齐中心
 
 --new version
+--Label(标签)用于显示，Text(文本)用于输入
 	cc.c4b(255,255,255,255) == cc.c3b(255,255,255)
 	local ttfConfig  = {}
     ttfConfig.fontFilePath="fonts/Marker Felt.ttf"

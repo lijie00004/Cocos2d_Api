@@ -1,5 +1,6 @@
 --old version
 CCUserDefault:sharedUserDefault():setBoolForKey("MusicSwitch",true)
+
 --new vestion
 --FileUtils
 local sharedFileUtils = cc.FileUtils:getInstance()--获取实例

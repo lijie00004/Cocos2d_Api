@@ -1,12 +1,50 @@
+--old version
+local function buttonEvent(sender,eventType)
+    if eventType == TOUCH_EVENT_BEGAN then
+        startPos = ccp(btn_bg:getPosition())
+    elseif eventType == TOUCH_EVENT_MOVED then
+        btn:setPosition(btn:getTouchMovePos())
+    elseif eventType == TOUCH_EVENT_ENDED then
+        if btn_bg:hitTest(btn:getTouchEndPos()) then--判断触摸点是否在节点范围内,超出return true
+            self:change_req()--根据新数据，刷新卡牌布局
+        else
+            btn:setPosition(startPos)--放回原位
+        end     
+    end
+end
+
+local btn = Button:create()
+btn:loadTextures("images/common_3/jiantou-1.png","images/common_3/jiantou-1.png")
+btn:setPressedActionEnabled(true)
+uiLayer:addWidget(btn)
+btn:addTouchEventListener(buttonEvent)
+
+btn:setEnabled(false)--子控件都不响应触摸
+btn:setTouchEnabled(false)
+
+--new version
+btn:setBright(false)--先设置后才能显示禁止图片
+btn:setTouchEnabled(false)
+btn:setEnabled(false)--子控件都不响应触摸,不知道为什么会把图片隐藏
+
+local function menuCloseCallback(sender, eventType)
+    if eventType == ccui.TouchEventType.began then --手指触碰屏幕
+    elseif eventType == ccui.TouchEventType.moved then --手指在屏幕上移动
+    elseif eventType == ccui.TouchEventType.ended then --手指离开屏幕
+    else
+    end
+end
+local button = ccui.Button:create("CloseNormal.png", "CloseSelected.png")
+button:addTouchEventListener(menuCloseCallback)
+button:setPressedActionEnabled(true)
+
 -- RadioButton
     local function onChangedRadioButtonGroup(sender, index, eventType)
         cclog("RadioButton" .. index .. " Clicked")
     end
-
     -- 创建RadioButtonGroup对象
     local radioButtonGroup = ccui.RadioButtonGroup:create()
     layer:addChild(radioButtonGroup)--radioButtonGroup和radioButton都要添加到当前层
-
     -- 创建RadioButton
     for i = 0, 4 do
         local radioButton = ccui.RadioButton:create("icon/btn_radio_off_holo.png", "icon/btn_radio_on_holo.png")
@@ -17,7 +55,6 @@
         radioButtonGroup:addEventListener(onChangedRadioButtonGroup)
         layer:addChild(radioButton)
     end
-
 
 
 --CheckBox
@@ -34,11 +71,6 @@
     --添加事件监听器
     ckb:addEventListener(onChangedCheckBox)
     layer:addChild(ckb)
-    --创建Text对象，显示CheckBox选中状态
-    label2 = ccui.Text:create("CheckBox Unselected", "fonts/Marker Felt.ttf", 24)
-    posX, posY = ckb:getPosition()
-    label2:setPosition(cc.p(posX, posY - 60))
-    layer:addChild(label2)
 
 
 

@@ -38,6 +38,8 @@
 		eventDispatcher:addEventListenerWithSceneGraphPriority(listener1, node)--和node绑定，such as:layer,sprite,无需手动删除
 		eventDispatcher:addEventListenerWithFixedPriority(listener1,int)--int越小，先响应事件,int不能为0
 		eventDispatcher:removeEventListener(listener1)
+		eventDispatcher:removeCustomEventListeners(customEventName)--注销自定义事件监听器
+    	eventDispatcher:removeAllEventListeners()--注销所有事件监听器，包括菜单项
 
 --registerScriptTapHandler
 	--registerScriptTapHandler用于menuItem,注册点击事件
