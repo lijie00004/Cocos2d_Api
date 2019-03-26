@@ -35,6 +35,9 @@ local function menuCloseCallback(sender, eventType)
     end
 end
 local button = ccui.Button:create("CloseNormal.png", "CloseSelected.png")
+button:setScale9Enabled(true)
+button:setContentSize(cc.size(100, button_scale9:getVirtualRendererSize().height))
+button:setTitleText("Text Button 1")
 button:addTouchEventListener(menuCloseCallback)
 button:setPressedActionEnabled(true)
 

@@ -1,7 +1,7 @@
 --Vec2(cc.p(1,1))
 --Size(cc.size(100,100))
 local node = Node:create()
-local btn = tolua.cast(sender,"Button")
+local btn = tolua.cast(layer,"Button")--类型强制转换
 node:getDescription()--(String)
 node:getLocalZOrder()--(int)
 node:getScaleX()--(float)--getScale()
