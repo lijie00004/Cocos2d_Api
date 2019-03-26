@@ -1,4 +1,11 @@
 --old veision
+	local lvNum = LabelAtlas:create()
+	lvNum:setProperty(self:equipmentWithId(character.equipId[i]).lv,"images/num2.png", 11,22, "/")
+	lvNum:setAnchorPoint(ccp(0,0.5))
+	lvNum:setScale(0.8)
+	lvNum:setPosition(ccp(lvImage:getContentSize().width/2,0))
+	lvImage:addChild(lvNum)
+
 	local label= Label:create()
 	label:setFontName(LFont())
 	label:setText(bigNumSwith(CurPlayer.gonghui_gold))
