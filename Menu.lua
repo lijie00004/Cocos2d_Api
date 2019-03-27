@@ -9,15 +9,12 @@ mn:alignItemsInRows(3, 3, 3, 3, 3)--五列三行
 mu:setEnabled(false)--无法交互
 --文本菜单
     local menuLabel = cc.MenuItemLabel:create(menuItemLabel)
-    menuLabel:setString(string)
-    menuLabel:getString(color3b)
+    menuLabel:setString(string)--getString()
     menuLabel:getDisabledColor()--获取禁用项时将使用的颜色。
-    menuLabel:setDisabledColor()
-    menuLabel:getLabel()
-    menuLabel:setLabel(node)
+    menuLabel:setDisabledColor(color3b)--(getDisabledColor())设置禁用颜色
+    menuLabel:setLabel(node)--getLabel()
     menuLabel:activate()--Activate the item.
-    menuLabel:selected()--可以设置item处理选中状态
-    menuLabel:unselected()
+    menuLabel:selected()--(unselected())可以设置item处理选中状态
     menuLabel:setEnabled(boolean)--false时，就会显示setDisabledColor
     menuLabel:initWithLabel(node,callback)
     local function callback(tag, menuItemSender)
@@ -28,15 +25,10 @@ mu:setEnabled(false)--无法交互
     menuItem:registerScriptTapHandler(callback)
    
 --精灵与图片菜单
-    local sprite = cc.Sprite:create("blue_tiles.png")
     SpriteMenuItem = cc.MenuItemSprite:create(sprite,sprite_1,sprite_2)--三个参数不能是同一个节点
     SpriteMenuItem:setEnabled(false)--禁用，如果有disabledImage,会显示disabledImage
-    SpriteMenuItem:selected()--显示selectedImage
-    SpriteMenuItem:unselected()--显示unselectedImage
+    SpriteMenuItem:selected()--(unselected())显示selectedImage
     SpriteMenuItem:setPosition(cc.p(100,0))--可设，可不设,设置位移太大，会导致无法响应事件
-    local menu = cc.Menu:create(SpriteMenuItem)--方法一
-    menu:addChild(SpriteMenuItem)--方法二
-    menu:setPosition(cc.p(0,0))
 
     ImageMenuItem = cc.MenuItemImage:create(
         "menu/setting-up.png",
@@ -45,16 +37,12 @@ mu:setEnabled(false)--无法交互
 
 
 --开关菜单
-	local soundOnMenuItem = cc.MenuItemImage:create("menu/on.png", "menu/on.png")
-    local soundOffMenuItem = cc.MenuItemImage:create("menu/off.png", "menu/off.png")
-    local soundToggleMenuItem = cc.MenuItemToggle:create(soundOnMenuItem, soundOffMenuItem)
+    local soundToggleMenuItem = cc.MenuItemToggle:create(on_ImageMenuItem,off_ImageMenuItem)
     local function menuSoundToggleCallback(sender)
         cclog("Sound Toggle.")
     end
     soundToggleMenuItem:registerScriptTapHandler(menuSoundToggleCallback)
-
     local mn = cc.Menu:create(soundToggleMenuItem)
-
     --设置选中状态
     if  defaults:getBoolForKey(MUSIC_KEY, false) then
         soundToggleMenuItem:setSelectedIndex(0)
