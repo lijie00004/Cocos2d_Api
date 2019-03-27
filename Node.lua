@@ -1,5 +1,6 @@
 --Vec2(cc.p(1,1))
 --Size(cc.size(100,100))
+getVirtualRendererSize
 local node = Node:create()
 local btn = tolua.cast(sender,"Button")
 node:getDescription()--(String)
