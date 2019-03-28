@@ -114,8 +114,8 @@ button:setPressedActionEnabled(true)
     slider:addEventListener(onChangedSlider)
     layer:addChild(slider)
 
-    --创建Text对象，显示CheckBox选中状态
-    label2 = ccui.Text:create("0", "fonts/Marker Felt.ttf", 24)
+--创建Text对象
+    text = ccui.Text:create("0", "fonts/Marker Felt.ttf", 24)
     posX, posY = slider:getPosition()
     label2:setPosition(cc.p(posX, posY - 100))
     layer:addChild(label2)
