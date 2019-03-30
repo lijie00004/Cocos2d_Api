@@ -61,7 +61,7 @@
 			onTouchEnded(touch, event)
 		end
 	end
-	layer:registerScriptTouchHandler(onTouch)
+	layer:registerScriptTouchHandler(onTouch)--第一个参数callback,第二个参数boolean设置多点开关，第三个参数int优先级,第四个参数boolean吞没事件
 	layer:setTouchEnabled(true)
 	
 
