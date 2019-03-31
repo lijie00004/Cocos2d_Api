@@ -1,6 +1,5 @@
 --Vec2(cc.p(1,1))
 --Size(cc.size(100,100))
-getVirtualRendererSize
 local node = Node:create()
 local btn = tolua.cast(layer,"Button")--类型强制转换
 node:getDescription()--(String)
@@ -9,8 +8,8 @@ node:getScaleX()--(float)--getScale()
 node:getPosition()--(Vec2)getPositionX
 node:getPositionNormalized()--(Vec2)
 node:getSkewX()--(float)getSkewY
-node:getAnchorPoint()--获得锚点相对坐标
-node:getAnchorPointInPoints()--获得锚点绝对坐标
+node:getAnchorPoint()
+node:getAnchorPointInPoints()--return vec2 that  left bottom to anchorPoint 
 node:getContentSize()--(Size.width,Size.height)
 node:isVisible()
 node:getRotation()
@@ -28,8 +27,8 @@ node:getScene()--Returns the Scene that contains the Node.
 node:getBoundingBox()--(table){x = ,y = ,width = , height = }图片左下到父节点锚点的距离，图片大小
 node:getActionByTag()--(action)Gets an action from the running action list by its tag.
 node:getOpacity()
-node:getColor()--(Color3B){r = ,b = , g = }
-node:getDisplayedColor()--(Color3B){r = ,b = , g = }
+node:getColor()--Query node's color value.
+node:getDisplayedColor()--Query node's displayed color.
 
 node:setLocalZOrder(int)--LocalZOrder is the 'key' used to sort the node relative to its siblings.
 node:setScaleX(float)--setScale(0.7,1)
