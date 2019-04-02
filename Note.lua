@@ -40,6 +40,25 @@ end
 
 
 --定时器
+node:getScheduler()--得到调度器对象
+
+node:scheduleUpdate()--开启默认定时器.刷新次数为60次/秒.即每秒60帧
+node:update(float delta)--update为scheduleUpdate定时器的回调函数
+
+node:scheduleUpdateWithPriority(priority)--priority越小,优先级越高
+node:unscheduleUpdate()--取消默认定时器
+
+node:scheduleOnce(SEL_SCHEDULE selector, float delay)--只执行一次,delay秒后执行
+node:unschedule(SEL_SCHEDULE selector)--取消一个自定义定时器
+
+--后面三个参数可选
+node:schedule(e(SEL_SCHEDULE selector, float interval, int repeat, float delay))--设置自定义定时器.默认为每秒60帧
+
+node:unscheduleAllSelectors()--取消所有定时器
+node:resume()--恢复所有定时器和动作
+node:pause()--暂停所有定时器和动作
+
+
 --当Node被移除出场景或者其他情况下，调定时器将会被取消
 layer:scheduleUpdateWithPriorityLua(update, 0)--update表示回调函数，0表示优先级
 layer:unscheduleUpdate()--停止调度

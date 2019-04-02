@@ -91,6 +91,7 @@
     cc.RepeatForever:create(seq)--无限重复
     cc.Spawn:create(ac1)
     cc.Sequence:create(ac1)
+    node:getNumberOfRunningActions()--获取正在运行的动作数量
 
 --动作速度控制
     --排在组合之前
