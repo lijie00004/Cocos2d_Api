@@ -42,18 +42,6 @@ end
 --定时器
 node:getScheduler()--得到调度器对象
 
-node:scheduleUpdate()--开启默认定时器.刷新次数为60次/秒.即每秒60帧
-node:update(float delta)--update为scheduleUpdate定时器的回调函数
-
-node:scheduleUpdateWithPriority(priority)--priority越小,优先级越高
-node:unscheduleUpdate()--取消默认定时器
-
-node:scheduleOnce(SEL_SCHEDULE selector, float delay)--只执行一次,delay秒后执行
-node:unschedule(SEL_SCHEDULE selector)--取消一个自定义定时器
-
---后面三个参数可选
-node:schedule(e(SEL_SCHEDULE selector, float interval, int repeat, float delay))--设置自定义定时器.默认为每秒60帧
-
 node:unscheduleAllSelectors()--取消所有定时器
 node:resume()--恢复所有定时器和动作
 node:pause()--暂停所有定时器和动作
@@ -64,8 +52,10 @@ layer:scheduleUpdateWithPriorityLua(update, 0)--update表示回调函数，0表�
 layer:unscheduleUpdate()--停止调度
 
 --当Node被移除出场景或者其他情况下，调定时器依旧在
---每0.2秒调用shootBullet函数,false表示无限次
-schedulerId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(callback, 0.2, false)--cc.Director:getInstance():getScheduler()全局定时器
+--如果interval为0，则调用每一帧
+--If paused is true, then it won't be called until it is resumed.
+--cc.Director:getInstance():getScheduler()全局定时器
+schedulerId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(callback, interval, paused)
 cc.Director:getInstance():getScheduler():unscheduleScriptEntry(schedulerId)
 
 cc.Director:getInstance():getScheduler():setTimeScale(1.0)--动作、动画执行速度
