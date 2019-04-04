@@ -40,7 +40,75 @@ returnFunction = function(width, height)--anonymous function(匿名函数)
 	return area
 end
 
+--当我们为 table a 并设置元素，然后将 a 赋值给 b，则 a 与 b 都指向同一个内存
+--如果 a 设置为 nil ，则 b 同样能访问 table 的元素
+--如果a和b都为nil,清空内存
+--重写的比较函数，两个值相等时不能return true
+table.concat(table [, sep [, start [, end]]])--元素间以指定的分隔符(sep)隔开,从start位置到end位置
+table.insert(table, [pos,] value)--指定位置(pos)插入值为value的一个元素,默认为数组部分末尾.
+table.remove(table [, pos])--返回位于pos位置的元素. 其后的元素会被前移.默认为table长度, 即从最后一个元素删起
+table.sort(table [, comp])--string类型按字母排序
+
+--反自反性：在写的排序的实现中，自己和自己比较，要永远是false
+--非对称性：a和b比较得到的是true，那么b和a比较得到的就是false，否则就不成立 
+--不可比的传递性：a和b之间成立，b和c之间成立，那么a和c之间也要成立，才能达到传递性
+--注意考虑a与b相同时的情况
+
+function(a, b)    
+  return a.level > b.level or 
+  a.level == b.level and a.exp > b.exp
+end
+
+function(a, b)    
+if a.level == b.level then
+    return a.exp > b.exp
+end
+    return a.level > b.level
+end
+
+
+function(a, b)
+	if a.level ~= b.level then
+	    return a.level > b.level
+	end
+	return a.exp > b.exp
+end
+
+
+function i3k_shuffle(tbl)--随机排序,对于一些数据，将他们的顺序打乱，得到一个新的数据
+    local n = #tbl
+    for i = 1, n do
+        local j = math.random(i, n)
+        if j > i then
+            tbl[i], tbl[j] = tbl[j], tbl[i]
+        end
+    end
+end
+
 table[1] = nil--#table不会改变，位置1的坑还在
+
+function table_maxn(t)--获取 table 中的最大值
+  local mn=nil;
+  for k, v in pairs(t) do
+    if(mn==nil) then
+      mn=v
+    end
+    if mn < v then
+      mn = v
+    end
+  end
+  return mn
+end
+
+--获取table长度,会在索引中断的地方停止计数，
+function table_leng(t)
+  local leng=0
+  for k, v in pairs(t) do
+    leng=leng+1
+  end
+  return leng;
+end
+
 --排序
 table.sort(tempTable,function(a, b) return (a < b) end)--排序从小到大
 --当比较函数没有写的时候，table.sort默认按照lua里面的排序规则升序排序

@@ -43,22 +43,20 @@
 
 --registerScriptTapHandler
 	--registerScriptTapHandler用于menuItem,注册点击事件
-	local function connectToSwitch(tag,menuItem)-- tag为menuItem设置的标签 ，menuItem为相应对象
-   		if menuItem:getSelectedIndex() == 0 then
+	local function connectToSwitch(tag,sender)-- tag为menuItem设置的标签 ，menuItem为相应对象
+   		if sender:getSelectedIndex() == 0 then
    		end
    	end
 	menuItem:registerScriptTapHandler(connectToSwitch)
 
 --registerScriptTouchHandler,注册触屏事件(layer)
+	--began、moved、ended都会执行一次print("111")
 	local function onTouch(eventType, x, y)
-		--log("eventType = "..tostring(eventType))
+		print("111")
 		if eventType == "began" then
-			--需要返回true
-			return onTouchBegan(touch, event)
+			return true--返回false,moved和ended将不响应
 		elseif eventType == "moved" then
-			onTouchMoved(touch, event)
 		elseif eventType == "ended" then
-			onTouchEnded(touch, event)
 		end
 	end
 	layer:registerScriptTouchHandler(onTouch)--第一个参数callback,第二个参数boolean设置多点开关，第三个参数int优先级,第四个参数boolean吞没事件

@@ -20,13 +20,15 @@ pageView:addPage(layer)
 pageView:removeAllChildren()
 pageView:addEventListenerPageView(eventHandler)
 
+
+
 --new version
 local pageView = ccui.PageView:create()--锚点(0,0)
 pageView:setContentSize(cc.size(200,100))
 pageView:setTouchEnabled(true)
 pageView:setPosition(cc.p(60,30))
 pageView:setDirection(cc.SCROLLVIEW_DIRECTION_VERTICAL)--cc.SCROLLVIEW_DIRECTION_HORIZONTAL
-pageView:scrollToPage(2,0.1)--翻到第几页，从0开始,第二个参数是持续时间
+pageView:scrollToPage(2,1)--翻到第几页，从0开始,第二个参数是持续时间
 pageView:getCurrentPageIndex()
 
 for i=0,3 do
