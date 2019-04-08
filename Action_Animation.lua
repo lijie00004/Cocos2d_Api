@@ -1,5 +1,31 @@
 --old version
-    --动画
+    --骨骼动画
+    function showAnimation_1(pArmature,movementType,animName)
+        if movementType == 1 then--必须用这个
+        end
+    end
+    function showAnimation_2(pArmature,movementType,animName)
+    if movementType == 1 then--必须用这个
+        end
+    end
+    CCArmatureDataManager:sharedArmatureDataManager():addArmatureFileInfo("export/shilian_1.ExportJson")
+    local drawAnim = CCArmature:create("shilian_1")
+    drawAnim:setPosition(ccp(240,427))
+    self.layer:addChild(drawAnim)
+    --帧事件，"evt": "160"
+    drawAnim:getAnimation():setFrameEventCallFunc(showAnimation_1)
+    drawAnim:getAnimation():setMovementEventCallFunc(showAnimation_2)
+    --Animation1 is name of mov_data
+    drawAnim:getAnimation():play("Animation1")-- or playWithIndex(0)
+    --get bone by name
+    local bone = drawAnim:getBone("kapai_1")
+    --replace bone by image, 1 is index, because bone has many of images
+    bone:addDisplay(image, 1)
+    --remove file
+    CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo("export/shilian_1.ExportJson")
+
+
+    --animation
     local anim = Animation:create("anim/choujiang.ani", parentNode)
     anim:setFps(anim:getFps() * speed)
 
@@ -13,40 +39,25 @@
 
 
     local armatureDataManager = CCArmatureDataManager:sharedArmatureDataManager()
-    armatureDataManager:addArmatureFileInfo("export/shouchong_daochu.ExportJson")--"images/shengfu.csb"
+    armatureDataManager:addArmatureFileInfo("images/shengfu.csb")
     local animation_1 = CCArmature:create("shouchong_daochu")
     local animation_2 = CCArmature:create("shouchong_daochu")
     animation_1:setPosition(ccp(240, 180))--animation_1 is equivalent to node
     animation_1:getAnimation():setSpeedScale(self.speed * speed * 2)
     node:addNode(animation_1)--有时用addchild可以
-
-    animation_1:getAnimation():playWithIndex(0)
     animation_1:getAnimation():play("sheng_2")--胜利光圈
     animation_2:getAnimation():play("sheng")--胜利文字
 
-    
-
-    local function finish(sender)
-        animation_1:getAnimation():stop()
-        animation_1:removeFromParentAndCleanup(true)
-        CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo("images/naruto/csb/shengfu.csb")
-        --可选
-        animation_1 = nil
-        layer:stopAllActions()
-    end
-    local array = CCArray:create()
-    array:addObject(CCFadeTo:create(1,50))
-    array:addObject(CCDelayTime:create(0.05))
-    array:addObject(CCCallFuncN:create(finish))
-
-    energyAnim:runAction(CCRepeatForever:create(CCSequence:create(array)))
-    energyAnim:getAnimation():setMovementEventCallFunc(finish)--动画播放完后执行
-
-    
+    animation_1:getAnimation():stop()
+    animation_1:removeFromParentAndCleanup(true)
+    CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo("images/naruto/csb/shengfu.csb")
+    --可选
+    animation_1 = nil
+    layer:stopAllActions()
 
 
 
-
+--new version
     action:reverse()--(action)
     action:clone()--(action)
     action:getTarget()--(node)
