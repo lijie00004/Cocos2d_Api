@@ -56,7 +56,7 @@
 		if eventType == "began" then
 			return true--返回false,moved和ended将不响应
 		elseif eventType == "moved" then
-		elseif eventType == "ended" then
+		elseif eventType == "ended" then--还有取消
 		end
 	end
 	layer:registerScriptTouchHandler(onTouch)--第一个参数callback,第二个参数boolean设置多点开关，第三个参数int优先级,第四个参数boolean吞没事件

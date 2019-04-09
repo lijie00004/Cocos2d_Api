@@ -1,26 +1,18 @@
 --cocos2d-2
     local image= ImageView:create()
     image:loadTexture("images/common_3/banner_chenggong.png")
+
     image:ignoreContentAdaptWithSize(false)
     image:setSize(CCSize(60,60))
+
     image:setScale9Enabled(true)
     image:setCapInsets(CCRect(117,13,117,13))
     image:setSize(CCSize(370,89))
+
     image:setOpacity(150)
     image:setFlipX(true)
     mainBg:addChild(image)
     image1:setTextureRect(CCRectMake(0,0,100,100))
---动画
-    local file = "shilianzhimen_01"
-    CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo(armatureAnimPath(file))
-    local armatureDataManager = CCArmatureDataManager:sharedArmatureDataManager()
-    armatureDataManager:addArmatureFileInfo("export/"..file..".ExportJson")
-    local armature = CCArmature:create(file)
-    self.layer:addChild(armature)
-    armature:setPosition(ccp(240,140*(1-i)+720))
-    armature:getAnimation():playWithIndex(0)
-
-
 
 --cocos2d-3
     local sprite = cc.Sprite:create()--create(filePath) create(filePath,cc.rect(20,20,100,100))
@@ -47,7 +39,7 @@
     sprite:getTexture()
     sprite:setTextureRect(cc.rect(10,10,50,50))
     sprite:getCenterRect()
-    sprite:setDisplayFrameWithAnimationName(string_animation)
+    sprite:setDisplayFrameWithAnimationName(animationName,frameIndex)--Changes the display frame with animation name and index.
     sprite:setFlippedX(boolean)--翻转沿X轴
     sprite:setFlippedY(boolean)
     sprite:setStretchEnabled(boolean)--(default true) 控制图片是否填满节点大小setContentSize

@@ -23,7 +23,7 @@
     local scrollView = cc.ScrollView:create()
     scrollView:getDirection()--(direction)
     scrollView:getInnerContainer()--(Layout)Get inner container of scrollview.Inner container is a child of scrollview
-    scrollView:getInnerContainer():getPostion()--获取当前坐标
+    scrollView:getInnerContainer():getPosition()--获取当前坐标
     scrollView:getInnerContainerSize()--(size)
     scrollView:getInnerContainerPosition()--(Vec2)
     scrollView:getChildren()--(array)
@@ -63,7 +63,6 @@
 
     scrollView:scrollToBottom(float,boolean)--Scroll inner container to bottom boundary of scrollview.boolean(滚动速度衰减与否)
     scrollView:scrollToTop(float,boolean)--Scroll inner container to top boundary of scrollview.float(所需时间),boolean(滚动速度衰减与否)
-    scrollView:scrollToTop(float,boolean)
     scrollView:scrollToRight(float,boolean)
     scrollView:scrollToTopLeft(float,boolean)
     scrollView:scrollToTopRight(float,boolean)
@@ -86,8 +85,6 @@
         end
     end
     scrollview:addTouchEventListener(scrollviewEvent)
-
-    -- scrollView:addEventListenerScrollView(target,selector)--Add callback function which will be called when scrollview event triggered
     -- scrollView:addEventListener(callback)--Add callback function which will be called when scrollview event triggered
     -- onTouchBegan(Touch,Event)
 
