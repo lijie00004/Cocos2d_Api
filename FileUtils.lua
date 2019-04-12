@@ -43,18 +43,15 @@ for key,value in pairs(dict) do
     end
 end
     --根为列表结构的属性列表
-local sharedFileUtils = cc.FileUtils:getInstance()--获取实例
-local fullPathForFilename = sharedFileUtils:fullPathForFilename("NotesList.plist")
 local vector = sharedFileUtils:getValueVectorFromFile(fullPathForFilename)
-    for i = 1, table.getn(vector) do
-        cclog("--------%d--------",i)
-        local row = vector[i]
-        local date = row["date"]
-        local content = row["content"]
-        cclog("date = %s", date)
-        cclog("content : %s", content)
-    end
-end 
+for i = 1, table.getn(vector) do
+    cclog("--------%d--------",i)
+    local row = vector[i]
+    local date = row["date"]
+    local content = row["content"]
+    cclog("date = %s", date)
+    cclog("content : %s", content)
+end
 
 
 --XML保存游戏设置，和精灵状态等

@@ -5,7 +5,7 @@
 	    end
 	end
 	layer:registerScriptHandler(onNodeEvent)
-	scene:registerScriptHandler(function(event)
+	node:registerScriptHandler(function(event)
 	    if event == "enter" then--进入场景时触发
 	    elseif event == "enterTransitionFinish" then--场景进入并且过渡动画完成时候触发
 	    elseif event == "exit" then--退出场景时触发

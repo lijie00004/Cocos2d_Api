@@ -1,8 +1,7 @@
 --old version
     --骨骼动画
     function showAnimation_1(pArmature,movementType,animName)
-        if movementType == 1 then--必须用这个
-        end
+
     end
     function showAnimation_2(pArmature,movementType,animName)
     if movementType == 1 then--必须用这个
@@ -16,10 +15,11 @@
     drawAnim:getAnimation():setFrameEventCallFunc(showAnimation_1)
     drawAnim:getAnimation():setMovementEventCallFunc(showAnimation_2)
     --Animation1 is name of mov_data
-    drawAnim:getAnimation():play("Animation1")-- or playWithIndex(0)
+    drawAnim:getAnimation():play("Animation1")
+    drawAnim:getAnimation():playWithIndex(0)
     --get bone by name
     local bone = drawAnim:getBone("kapai_1")
-    --replace bone by image, 1 is index, because bone has many of images
+    --replace bone by image, 1 is index
     bone:addDisplay(image, 1)
     --remove file
     CCArmatureDataManager:sharedArmatureDataManager():removeArmatureFileInfo("export/shilian_1.ExportJson")
@@ -27,7 +27,7 @@
 
     --animation
     local anim = Animation:create("anim/choujiang.ani", parentNode)
-    anim:setFps(anim:getFps() * speed)
+    anim:setFps(anim:getFps() * float)
 
     local array = CCArray:create()
     array:addObject(anim)
@@ -75,7 +75,8 @@
 	cc.Show:create()
 	cc.ToggleVisibility:create()--将对象显示/隐藏切换  
 --间隔动作
-    cc.Animate:create(animation)
+    local animation = cc.Animation:create()
+    cc.Animate:create(animation)--给出动画名称的精灵动画
     cc.DelayTime:create(2)
 	cc.MoveTo:create(2,cc.p(-50, -50))--移动
     cc.MoveBy:create(2,cc.p(-50, -50))
@@ -142,7 +143,7 @@
     sprite:setPosition(cc.p(size.width/2, size.height/2))
     layer:addChild(sprite)
 
-    local animation = cc.Animation:create()--动画开始
+    local animation = cc.Animation:create()--A Animation object is used to perform animations on the Sprite objects.
     for i=1,4 do
         local frameName = string.format("h%d.png",i)
         cclog("frameName = %s",frameName)
