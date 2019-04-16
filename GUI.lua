@@ -35,11 +35,22 @@ local function menuCloseCallback(sender, eventType)
     end
 end
 local button = ccui.Button:create("CloseNormal.png", "CloseSelected.png")
-button:setScale9Enabled(true)
+button:loadTextures("CloseNormal.png", "CloseSelected.png")--loadTextureNormal loadTexturePressed loadTextureDisabled   
+button:setScale9Enabled(true)--好像可以不用写
+button:setCapInsets(cc.rect(25,25,3,4))--好像可以不用写 setCapInsetsNormalRenderer setCapInsetsPressedRenderer setCapInsetsDisabledRenderer
+--Set true will ignore user defined content size which means the widget size is always equal to the return value of getVirtualRendererSize.
+button:ignoreContentAdaptWithSize(true)
+button:getVirtualRendererSize()--Get the virtual renderer's size.
 button:setContentSize(cc.size(100, button_scale9:getVirtualRendererSize().height))
 button:setTitleText("Text Button 1")
+button:setTitleColor(color3B)
+button:setTitleFontSize(float)
+button:setTitleFontName(fontName)
+button:setTitleAlignment(hAlignment)
+button:setTitleAlignment(hAlignment,vAlignment )
+button:setZoomScale(float   scale)
 button:addTouchEventListener(menuCloseCallback)
-button:setPressedActionEnabled(true)
+button:setPressedActionEnabled(true)--縮放
 
 -- RadioButton
     local function onChangedRadioButtonGroup(sender, index, eventType)
@@ -125,9 +136,9 @@ button:setPressedActionEnabled(true)
     EditBox:setMaxLength(6)--最大长度
     EditBox:setText("")--设置内容
     EditBox:getText()--获取内容
-    EditBox:setFontColor(color_1)--设置内容字体颜色
-    EditBox:setFont(font,font_24)--设置内容字体和大小
-    EditBox:setPlaceholderFont(font,font_24)----设置提示内容字体和大小
+    EditBox:setFontColor(color_1)--设置字体颜色
+    EditBox:setFont(font,font_24)--设置字体和大小
+    EditBox:setPlaceholderFont(font,font_24)----设置提示字体和大小
     EditBox:setPlaceHolder("请输入账号")--设置提示内容
     EditBox:setInputFlag(cc.EDITBOX_INPUT_FLAG_PASSWORD)--内容加密（*****）
     EditBox:setInputMode(cc.EDITBOX_INPUT_MODE_NUMERIC)--输入内容只能是数字
