@@ -1,9 +1,8 @@
 --old veision
 	--一连串英文会当做一个单词 不会换行 加个空格(l a b e l)
 	local lvNum = LabelAtlas:create()
-	lvNum:setProperty(self:equipmentWithId(character.equipId[i]).lv,"images/num2.png", 11,22, "/")
+	lvNum:setProperty(lv,"images/num2.png", 11,22, "/")
 	lvNum:setAnchorPoint(ccp(0,0.5))
-	lvNum:setScale(0.8)
 	lvNum:setPosition(ccp(lvImage:getContentSize().width/2,0))
 	lvImage:addChild(lvNum)
 
